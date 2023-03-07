@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from django.shortcuts import render
 from django.contrib import messages
 import pandas as pd
@@ -25,12 +26,19 @@ class UserRegisterView(View):
             last_nam = request.POST.get('last_name')
             listi = pd.DataFrame(User.objects.values('email'))['email'].tolist()
             if emai not in listi:
-                User.objects.get_or_create(
+                # User.objects.get_or_create(
+                #     email=emai,
+                #     password = make_password(password),
+                #     first_name = first_nam,
+                #     last_name = last_nam
+                # )
+                user = User(
                     email=emai,
-                    password = password,
                     first_name = first_nam,
                     last_name = last_nam
                 )
+                user.set_password(password)
+                user.save()
                 messages.success(self.request,'New User Added Successfully. Proceed to login.')
                 return HttpResponseRedirect(reverse('login'))
             elif emai in listi:

@@ -1,74 +1,46 @@
+<br>
 <footer class="page-footer font-small special-color-dark pt-4">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <ul class="list-unstyled text-center">
-                    <!-- <li>
-                        <a href="/" style="color: rgb(204, 203, 203);"><i class="fa fa-home" aria-hidden="true" style="margin-right: 0.5em;"></i>Home</a>
-                    </li> -->
                     <li>
-                        <a href="/return_calls/" style="color: rgb(204, 203, 203);"><i class="fa fa-phone" aria-hidden="true" style="margin-right: 0.5em;"></i>All Return Calls</a>
+                        <a href="/" style="color: rgb(204, 203, 203);"><i class="fa fa-home" aria-hidden="true" style="margin-right: 0.5em;"></i>Home</a>
                     </li>
+<!--                    <li>-->
+<!--                        <a href="/return_calls/" style="color: rgb(204, 203, 203);"><i class="fa fa-phone" aria-hidden="true" style="margin-right: 0.5em;"></i>All Return Calls</a>-->
+<!--                    </li>-->
                     <!-- <li>
                         <a href="/unknowns/" style="color: rgb(204, 203, 203);"><i class="fa fa-database" aria-hidden="true" style="margin-right: 0.5em;"></i>Researched</a>
                     </li> -->
-                    <li>
-                        <a href="/allcalls/" style="color: rgb(204, 203, 203);"><i class="fa fa-phone" aria-hidden="true" style="margin-right: 0.5em;"></i>All Made Calls</a>
-                    </li>
-                    <li>
-                        <a href="/pending_unknowns/" style="color: rgb(204, 203, 203);"><i class="fa fa-hourglass-half" aria-hidden="true" style="margin-right: 0.5em;"></i>Pending Unknowns</a>
-                    </li>
+<!--                    <li>-->
+<!--                        <a href="/allcalls/" style="color: rgb(204, 203, 203);"><i class="fa fa-phone" aria-hidden="true" style="margin-right: 0.5em;"></i>All Made Calls</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="/pending_unknowns/" style="color: rgb(204, 203, 203);"><i class="fa fa-hourglass-half" aria-hidden="true" style="margin-right: 0.5em;"></i>Pending Unknowns</a>-->
+<!--                    </li>-->
                 </ul>
             </div>
             <div class="col-md-4">
                 <ul class="list-unstyled list-inline text-center py-2">
-                    <!-- <li class="list-inline-item">
-                        <a href="#!" class="">Start New Unknown</a>
-                    </li> -->
-                    <!-- <li class="list-inline-item">
-                        <a href="/start/" class="btn btn-outline-white btn-rounded"><i class="fa fa-plus"
-                                style="padding-right: 2em;"></i>Start New Unknown</a>
-                    </li> -->
-                    <li class="list-inline-item">
-                        <button class="md-trigger btn btn-outline-white btn-rounded"
-                            data-modal="modal-12">Start New<i class="fa fa-plus" style="margin-left: 1em;"></i></button>
-                    </li>
+<!--                    <li class="list-inline-item">-->
+<!--                        <button class="md-trigger btn btn-outline-white btn-rounded"-->
+<!--                            data-modal="modal-12">Start New<i class="fa fa-plus" style="margin-left: 1em;"></i></button>-->
+<!--                    </li>-->
                 </ul>
             </div>
             <div class="col-md-4">
                 <ul class="list-unstyled list-inline text-center py-2">
-                    <li>
-                        <a href="/mycalls/" style="color: rgb(204, 203, 203);"><i class="fa fa-phone" aria-hidden="true" style="margin-right: 0.5em;"></i>My Made Calls</a>
-                    </li>
-                    {% if user.is_superuser %}
-                    <li>
-                        <a href="/mydbc/" style="color: rgb(204, 203, 203);"><i class="fa fa-mars-double" aria-hidden="true" style="margin-right: 0.5em;"></i>My Double Checks</a>
-                    </li>
-                    {% endif %}
                     <li>
                         <a href="/accounts/logout/" style="color: rgb(204, 203, 203);"><i class="fa fa-user" style="margin-right: 0.5em;"></i> Logout</a>
                     </li>
                 </ul>
             </div>
-            <!-- <div class="col-md-6 mb-4">
-                <form class="form-inline">
-                    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
-                        aria-label="Search">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                </form>
-            </div>
-            <div class="col-md-6 mb-4">
-                <form class="input-group">
-                    <input type="text" class="form-control form-control-sm" placeholder="Your email"
-                        aria-label="Your email" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-sm btn-outline-white my-0" type="button">Sign up</button>
-                    </div>
-                </form>
-            </div> -->
         </div>
     </div>
-    <div class="footer-copyright text-center py-3" style="font-size: smaller;">© 2021 Copyright
-        <a href="/"> ClickSWITCH Quest</a>
+    <div class="footer-copyright text-center py-3" style="font-size: smaller;">©
+        <script type="text/javascript">document.write(new Date().getFullYear());</script>
+        Copyright
+        <a href="/"> {{project}}</a>
     </div>
 </footer>

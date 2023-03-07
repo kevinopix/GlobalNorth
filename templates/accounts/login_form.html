@@ -119,13 +119,16 @@
                 <span> Login to Fulfillment </span>
             </div>
             <div class="card-body">
-                {% if messages %} {% for message in messages %}
+                {% if messages %}
+                {% for message in messages %}
                 <div class="alert alert-{{message.tags}}" role="alert">
                     {% autoescape off %} {{ message }} {% endautoescape %}
                 </div>
-                {% endfor %} {% endif %}
+                {% endfor %}
+                {% endif %}
                 <form method='POST' action='' enctype='multipart/form-data'>
-                    {% csrf_token %} {% if form.errors %}
+                    {% csrf_token %}
+                    {% if form.errors %}
                     <p style="color: red;">
                         Please correct the error{{ form.errors|pluralize }} below.
                     </p>
@@ -134,21 +137,18 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" id="email" name="email" class="form-control" placeholder="email" required>
-                        {% for error in form.non_field_errors %}
-                        <div class="alert alert-danger">
-                            <strong>{{ error|escape }}</strong>
-                        </div>
-                        {% endfor %}
+<!--                        <input type="text" id="email" name="email" class="form-control" placeholder="email" required>-->
+                        {{form.email}}
                     </div>
 
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Password"
-                            required>
-                        <span class="help-block"> {{ form.password.errors }}<span></span>
+<!--                        <input type="password" id="password" name="password" class="form-control" placeholder="Password"-->
+<!--                            required>-->
+                        {{form.password}}
+<!--                        <span class="help-block"> {{ form.password.errors }}<span></span>-->
                     </div>
 
                     <div class="form-group">
