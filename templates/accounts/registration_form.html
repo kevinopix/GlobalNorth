@@ -97,12 +97,7 @@ Registration Form
         <div class="card card-login mx-auto text-center"
             style="background: rgb(253, 227, 227) !important;" id="form_login">
             <div class="card-header mx-auto" style="background: rgb(253, 227, 227) !important;">
-                <span>
-                    <h2 class="rty" style="font-family: 'Avenir LT Std';font-weight: 900;"><span
-                        class="vc">Click</span><span>SWITCH</span> <span class="vc"
-                        style="">Q</span><span>uest</span><span class="vc">.</span></h2>
-                </span>
-                <span> Add New User </span>
+                <span>{{project}} - Add New User </span>
             </div>
             <div class="card-body">
                 <form class="form-horizontal" action='' method="POST">
@@ -117,17 +112,13 @@ Registration Form
                     </p>
                     {% endfor %}
                     {% endif %}
-                    {% if messages %} {% for message in messages %}
+                    {% if messages %}
+                    {% for message in messages %}
                     <div class="alert alert-{{message.tags}}" role="alert">
                         {% autoescape off %} {{ message }} {% endautoescape %}
                     </div>
-                    {% endfor %} {% endif %}
-                    <!-- <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <input type="text" id="username" name="username" class="form-control" placeholder="Username">
-                    </div> -->
+                    {% endfor %}
+                    {% endif %}
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>

@@ -1576,3 +1576,7 @@ ul.search-description {
             border-radius: 0.25rem;
             transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
         }
+
+#alerted{
+    margin-bottom: 1em;
+}

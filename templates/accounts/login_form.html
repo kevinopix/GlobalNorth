@@ -1,4 +1,9 @@
-{% extends 'base.html' %} {% load static %} {% block title %}{{ title }}{% endblock %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
 <style>
     @import url('http://fonts.cdnfonts.com/css/avenir-lt-std');
 
@@ -110,22 +115,18 @@
         <div class="card card-login mx-auto text-center" style="background: rgb(253, 227, 227) !important;"
             id="form_login">
             <div class="card-header mx-auto" style="background: rgb(253, 227, 227) !important;">
-                <span>
-                    <!-- <img src="{% static 'images/cslogo.png' %}" class="w-75" alt="Logo"> -->
-                    <h2 class="rty" style="font-family: 'Avenir LT Std';font-weight: 900;"><span
-                            class="vc">Click</span><span>SWITCH</span> <span class="vc"
-                            style="">Q</span><span>uest</span><span class="vc">.</span></h2>
-                </span>
-                <span> Login to Fulfillment </span>
+                <span> Login to {{project}} </span>
             </div>
             <div class="card-body">
                 {% if messages %}
                 {% for message in messages %}
-                <div class="alert alert-{{message.tags}}" role="alert">
-                    {% autoescape off %} {{ message }} {% endautoescape %}
+                <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
+                     role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
+                    {{ message }}
                 </div>
                 {% endfor %}
                 {% endif %}
+
                 <form method='POST' action='' enctype='multipart/form-data'>
                     {% csrf_token %}
                     {% if form.errors %}
@@ -135,9 +136,8 @@
                     {% endif %}
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-<!--                        <input type="text" id="email" name="email" class="form-control" placeholder="email" required>-->
                         {{form.email}}
                     </div>
 
@@ -145,10 +145,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-<!--                        <input type="password" id="password" name="password" class="form-control" placeholder="Password"-->
-<!--                            required>-->
                         {{form.password}}
-<!--                        <span class="help-block"> {{ form.password.errors }}<span></span>-->
                     </div>
 
                     <div class="form-group">

@@ -3,8 +3,12 @@ from django import forms
 
 
 class UserLoginForm(forms.Form):
-    email = forms.CharField(widget= forms.TextInput(attrs={'class':'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    email = forms.CharField(widget= forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': "Enter your Email"}
+    ))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': "Enter your Password"}
+    ))
 
     def clean(self, *args, **kwargs):
         email = self.cleaned_data.get('email')
