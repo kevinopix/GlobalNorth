@@ -7,14 +7,15 @@ from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class HomeView(LoginRequiredMixin, generic.TemplateView):
+#LoginRequiredMixin,
+class HomeView(generic.TemplateView):
     title = "HomePage"
     template_name = 'home/homepage.html'
     project_name = settings.PROJECT_TITLE
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        user_ = self.request.user.email
+        # user_ = self.request.user.email
         context['title'] = self.title
         context['project'] = self.project_name
         return render(request, self.template_name, context)
