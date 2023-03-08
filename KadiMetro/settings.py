@@ -158,3 +158,19 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
  }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'kevinopix@gmail.com'
+EMAIL_HOST_PASSWORD = 'qvuukjiawrjdsncg'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp-mail.outlook.com'
+# EMAIL_HOST_USER = 'kevin.okome@q2ebanking.com' #os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = 'passPa$00037$011' #os.environ.get('EMAIL_HOST_PASSWORD')
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# ADMINS = [("kevinopix", EMAIL_HOST_USER),]
