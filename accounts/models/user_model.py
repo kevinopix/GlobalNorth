@@ -10,6 +10,7 @@ class User(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    profile_pk_value = models.IntegerField(blank=True, null=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -30,3 +31,8 @@ class User(AbstractUser):
         Returns the short name for the user.
         '''
         return self.first_name
+
+    @property
+    def username(self):
+        "Returns the person's full name."
+        return '%s%s' % (self.first_name, self.last_name[0])

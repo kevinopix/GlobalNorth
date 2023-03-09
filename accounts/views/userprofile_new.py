@@ -15,8 +15,12 @@ class UserProfileRegisterView(LoginRequiredMixin, generic.TemplateView):
     project_name = settings.PROJECT_TITLE
 
     def get(self, request):
+        user_profile_pk = self.request.user.profile_pk_value
+        if user_profile_pk > 0 and not self.request.user.is_staff:
+            messages.info(self.request, 'Your User Profile Already Exists')
+            return redirect('/accounts/profile/{a}/view'.format(a=user_profile_pk))
         form = self.form_class(None)
-        context = dict()
+        context = self.get_context_data()
         context['form'] = form
         context['project'] = self.project_name
         user_mail = self.request.user.email
@@ -33,25 +37,29 @@ class UserProfileRegisterView(LoginRequiredMixin, generic.TemplateView):
             existing_user = User.objects.get(email=user_mail)
             try:
                 existing_profile = UserProfile.objects.get(user__pk = existing_user.pk)
-                print(existing_profile)
-                messages.info(self.request, 'UserProfile already Exists! Proceed to Login.')
-                return redirect('login')
+                messages.info(self.request, 'UserProfile already Exists! You can only edit profile')
+                return redirect('/accounts/profile/{a}/view'.format(a=existing_profile.pk))
             except ObjectDoesNotExist as e:
                 print(e)
                 userprofile = UserProfile(
                     user=existing_user,
-                    location=location
+                    location=location,
+                    is_active=True
                 )
                 userprofile.save()
-                messages.success(self.request,'New User Added Successfully. Proceed to login.')
-                return redirect('login')
+
+                saved_profile = UserProfile.objects.get(user=existing_user)
+                saved_profile_user = User.objects.get(email=saved_profile.user.email)
+                saved_profile_user.profile_pk_value = saved_profile.pk
+                saved_profile_user.save()
+                messages.success(self.request,'New User Profile Added Successfully')
+                return redirect('/accounts/profile/{a}/view'.format(a=saved_profile.pk))
         else:
             messages.error(self.request, 'User Profile Not Added. Restart UserProfile Registration Process!')
             context['form'] = form
             context['project'] = self.project_name
             rotate_token(self.request)
             return render(request, self.template_name, context)
-
 
     def get_context_data(self, **kwargs) :
         context = super(UserProfileRegisterView, self).get_context_data(**kwargs)

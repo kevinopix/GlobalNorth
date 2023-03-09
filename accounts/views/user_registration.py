@@ -3,12 +3,12 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from accounts.forms import UserRegisterForm
 from accounts.models import User
-from django.views.generic import View
+from django.views import generic
 from django.conf import settings
 from django.middleware.csrf import rotate_token
 
 
-class UserRegisterView(View):
+class UserRegisterView(generic.TemplateView):
     form_class = UserRegisterForm
     template_name = 'accounts/registration_form.html'
     project_name = settings.PROJECT_TITLE

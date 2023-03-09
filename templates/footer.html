@@ -39,6 +39,14 @@
                             Logout
                         </a>
                     </li>
+                    {% if user.profile_pk_value > 0 %}
+                    <li>
+                        <a href="/accounts/profile/{{user.profile_pk_value}}/view" style="color: rgb(204, 203, 203);">
+                            <i class="fa fa-user" style="margin-right: 0.5em;"></i>
+                            My User Profile
+                        </a>
+                    </li>
+                    {% endif %}
                     {% else %}
                     <li>
                         <a href="/accounts/login/" style="color: rgb(204, 203, 203);">

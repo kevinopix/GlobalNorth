@@ -17,6 +17,10 @@ class UserLoginView(generic.TemplateView):
         rotate_token(request)
         form = UserLoginForm()
         context['form'] = form
+        nxt = request.GET.get("next", None)
+        print(nxt)
+        if self.request.user.is_authenticated:
+            return redirect('home')
         return render(request, "accounts/login_form.html", context)
 
     def post(self, request, *args, **kwargs):
@@ -30,9 +34,15 @@ class UserLoginView(generic.TemplateView):
             )
             if user is not None and not self.request.user.is_authenticated:
                 login(self.request, user)
-                message = f'Hello {username}! You have been logged in'
-                messages.success(self.request, message)
-                return redirect('home')
+                nxt = request.GET.get("next", None)
+                if nxt:
+                    message = f'Hello {username}!'
+                    messages.success(self.request, message)
+                    return redirect(nxt)
+                else:
+                    message = f'Hello {username}! You have been logged in'
+                    messages.success(self.request, message)
+                    return redirect('home')
         else:
             message = 'Login failed! Email and password records do not exist.'
             messages.error(self.request, message)

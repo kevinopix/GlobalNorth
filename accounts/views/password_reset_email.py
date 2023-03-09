@@ -16,8 +16,9 @@ from django.views import generic
 class PasswordResetRequestView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
         password_reset_form = PasswordResetForm()
-        return render(request=self.request, template_name="registration/password_reset_form.html",
-                      context={"password_reset_form": password_reset_form})
+        context = self.get_context_data()
+        context["password_reset_form"] = password_reset_form
+        return render(request=self.request, template_name="registration/password_reset_form.html",context=context)
 
     def post(self, request, *args, **kwargs):
         password_reset_form = PasswordResetForm(self.request.POST)

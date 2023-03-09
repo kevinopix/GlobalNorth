@@ -5,7 +5,7 @@ from django import forms
 class UserProfileCreationForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
-		fields = ['location',]
+		fields = ['location','is_active']
 		# 'report_number': forms.CharField(attrs={'class': 'form-control'})
 		widgets = {
 			'location': forms.TextInput(

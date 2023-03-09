@@ -11,7 +11,7 @@ class UserAdmin(ImportExportModelAdmin):
     form = UserChangeForm
     model = User
     resource_class = UserResorce
-    list_display = ('email','first_name','last_name', 'is_staff', 'is_active',)
+    list_display = ('email','first_name','last_name', 'is_staff', 'is_active','profile_pk_value')
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (
         (None, {'fields': ('email', 'first_name','last_name','password')}),
