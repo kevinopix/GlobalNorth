@@ -1,9 +1,6 @@
-from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from accounts.forms import UserLoginForm
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 from django.conf import settings
 from django.contrib import messages
 from django.middleware.csrf import rotate_token

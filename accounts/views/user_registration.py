@@ -1,12 +1,9 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from django.contrib import messages
-import pandas as pd
 from accounts.forms import UserRegisterForm
 from accounts.models import User
 from django.views.generic import View
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 from django.conf import settings
 from django.middleware.csrf import rotate_token
 
@@ -36,8 +33,7 @@ class UserRegisterView(View):
                 existing_user = User.objects.get(email=emai)
                 messages.info(self.request, 'User already Exists! Proceed to Login.')
                 return redirect('login')
-            except ObjectDoesNotExist as e:
-                # print(e)
+            except ObjectDoesNotExist:
                 user = User(
                     email=emai,
                     first_name=first_nam,

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import logout
 from django.conf import settings
 from django.middleware.csrf import rotate_token
 from django.views import generic
