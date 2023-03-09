@@ -1,1 +1,2 @@
 from .user_resources import UserResorce
+from .userprofile_resources import UserProfileResource

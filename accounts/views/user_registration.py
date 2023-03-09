@@ -23,7 +23,7 @@ class UserRegisterView(View):
 
     def post(self, request):
         form = self.form_class(request.POST)
-        context = dict()
+        context = self.get_context_data()
         if form.is_valid():
             password = request.POST.get('password')
             emai = request.POST.get('email')
