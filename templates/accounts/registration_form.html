@@ -102,20 +102,12 @@ Registration Form
             <div class="card-body">
                 <form class="form-horizontal" action='' method="POST">
                     {% csrf_token %}
-                    {% if form.errors %}
-                    <p style="color: red;">
-                        Please correct the error{{ form.errors|pluralize }} below.
-                    </p>
-                    {% for error in form.errors %}
-                    <p style="color: red;">
-                        {{ error }}
-                    </p>
-                    {% endfor %}
-                    {% endif %}
+
                     {% if messages %}
                     {% for message in messages %}
-                    <div class="alert alert-{{message.tags}}" role="alert">
-                        {% autoescape off %} {{ message }} {% endautoescape %}
+                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
+                         role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
+                        {{ message }}
                     </div>
                     {% endfor %}
                     {% endif %}

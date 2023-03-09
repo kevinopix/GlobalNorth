@@ -5,7 +5,8 @@
             <div class="col-md-4">
                 <ul class="list-unstyled text-center">
                     <li>
-                        <a href="/" style="color: rgb(204, 203, 203);"><i class="fa fa-home" aria-hidden="true" style="margin-right: 0.5em;"></i>Home</a>
+                        <a href="/" style="color: rgb(204, 203, 203);">
+                            <i class="fa fa-home" aria-hidden="true" style="margin-right: 0.5em;"></i>Home</a>
                     </li>
 <!--                    <li>-->
 <!--                        <a href="/return_calls/" style="color: rgb(204, 203, 203);"><i class="fa fa-phone" aria-hidden="true" style="margin-right: 0.5em;"></i>All Return Calls</a>-->
@@ -31,9 +32,21 @@
             </div>
             <div class="col-md-4">
                 <ul class="list-unstyled list-inline text-center py-2">
+                    {% if user.is_authenticated %}
                     <li>
-                        <a href="/accounts/logout/" style="color: rgb(204, 203, 203);"><i class="fa fa-user" style="margin-right: 0.5em;"></i> Logout</a>
+                        <a href="/accounts/logout/" style="color: rgb(204, 203, 203);">
+                            <i class="fa fa-user" style="margin-right: 0.5em;"></i>
+                            Logout
+                        </a>
                     </li>
+                    {% else %}
+                    <li>
+                        <a href="/accounts/login/" style="color: rgb(204, 203, 203);">
+                            <i class="fa fa-user" style="margin-right: 0.5em;"></i>
+                            Login
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

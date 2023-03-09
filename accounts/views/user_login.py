@@ -7,34 +7,46 @@ from django.urls import reverse
 from django.conf import settings
 from django.contrib import messages
 from django.middleware.csrf import rotate_token
+from django.views import generic
 
 
-def login_view(request):
-    rotate_token(request)
+class UserLoginView(generic.TemplateView):
     title = "Login"
-    form = UserLoginForm()
-    context = dict()
-    context["title"] = title
-    context['form'] = form
-    context['project'] = settings.PROJECT_TITLE
-    if request.method == 'POST':
+    project = settings.PROJECT_TITLE
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        context["title"] = self.title
+        context['project'] = self.project
         rotate_token(request)
-        form = UserLoginForm(request.POST)
+        form = UserLoginForm()
+        context['form'] = form
+        return render(request, "accounts/login_form.html", context)
+
+    def post(self, request, *args, **kwargs):
+        form = UserLoginForm(self.request.POST)
         if form.is_valid():
+            username = form.cleaned_data['email']
+            print(username)
             user = authenticate(
-                username=form.cleaned_data['email'],
+                username=username,
                 password=form.cleaned_data['password']
             )
-            if user is not None and not request.user.is_authenticated:
-                login(request, user)
-                message = f'Hello {user.username}! You have been logged in'
-                messages.success(request, message)
+            if user is not None and not self.request.user.is_authenticated:
+                login(self.request, user)
+                message = f'Hello {username}! You have been logged in'
+                messages.success(self.request, message)
                 return redirect('home')
         else:
             message = 'Login failed! Email and password records do not exist.'
-            messages.error(request, message)
-            return render(request, "accounts/login_form.html", context)
-    else:
-        rotate_token(request)
-        return render(request, "accounts/login_form.html", context)
+            messages.error(self.request, message)
+            context = self.get_context_data()
+            context["title"] = self.title
+            context['project'] = self.project
+            rotate_token(request)
+            form = UserLoginForm()
+            context['form'] = form
+            return render(self.request, "accounts/login_form.html", context)
 
+    def get_context_data(self, **kwargs) :
+        context = super(UserLoginView, self).get_context_data(**kwargs)
+        return context

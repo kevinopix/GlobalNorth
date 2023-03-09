@@ -53,3 +53,8 @@ class UserRegisterView(View):
             context['project'] = self.project_name
             rotate_token(self.request)
             return render(request, self.template_name, context)
+
+
+    def get_context_data(self, **kwargs) :
+        context = super(UserRegisterView, self).get_context_data(**kwargs)
+        return context

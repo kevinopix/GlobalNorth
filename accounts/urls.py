@@ -1,16 +1,17 @@
 from django.urls import path, re_path
-from accounts.views import UserRegisterView, login_view, logout_view, password_reset_request
+from accounts.views import \
+    UserRegisterView, PasswordResetRequestView, \
+    UserLoginView, UserLogoutView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('accounts/register/', UserRegisterView.as_view(), name='register'),
-    path('accounts/login/', login_view, name='login'),
-    path('accounts/logout/', logout_view, name='logout'),
-    # # path('accounts/new_inst_user/', AddInstUserView.as_view(), name='new_inst_user'),
+    path('accounts/login/', UserLoginView.as_view(), name='login'),
+    path('accounts/logout/', UserLogoutView.as_view(), name='logout'),
     # re_path(r'^password_reset/$', auth_views.PasswordResetView.as_view(
     #     template_name="registration/password_reset_form.html"),
     #     name='password_reset'),
-    path('accounts/password_reset/', password_reset_request, name='password_request'),
+    path('accounts/password_reset/', PasswordResetRequestView.as_view(), name='password_request'),
     re_path(r'^accounts/password_reset/done/$', auth_views.PasswordResetDoneView.as_view(
         template_name="registration/password_reset_done.html"),
         name='password_reset_done'),

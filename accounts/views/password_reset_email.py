@@ -10,11 +10,17 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib import messages
 from django.conf import settings
+from django.views import generic
 
 
-def password_reset_request(request):
-    if request.method == "POST":
-        password_reset_form = PasswordResetForm(request.POST)
+class PasswordResetRequestView(generic.TemplateView):
+    def get(self, request, *args, **kwargs):
+        password_reset_form = PasswordResetForm()
+        return render(request=self.request, template_name="registration/password_reset_form.html",
+                      context={"password_reset_form": password_reset_form})
+
+    def post(self, request, *args, **kwargs):
+        password_reset_form = PasswordResetForm(self.request.POST)
         if password_reset_form.is_valid():
             data = password_reset_form.cleaned_data['email']
             associated_users = User.objects.filter(Q(email=data))
@@ -36,8 +42,13 @@ def password_reset_request(request):
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
 
-                    messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
+                    messages.success(self.request, 'Check your email for instructions on how to reset your password.')
                     return redirect("home")
-    password_reset_form = PasswordResetForm()
-    return render(request=request, template_name="registration/password_reset_form.html",
-                  context={"password_reset_form": password_reset_form})
+            else:
+                messages.error(self.request, 'The email address you provided does not exist in our database')
+                return redirect("home")
+
+    def get_context_data(self, **kwargs) :
+        context = super(PasswordResetRequestView, self).get_context_data(**kwargs)
+        return context
+
