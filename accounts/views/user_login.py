@@ -17,8 +17,8 @@ class UserLoginView(generic.TemplateView):
         rotate_token(request)
         form = UserLoginForm()
         context['form'] = form
-        nxt = request.GET.get("next", None)
-        print(nxt)
+        # nxt = request.GET.get("next", None)
+        # print(context)
         if self.request.user.is_authenticated:
             return redirect('home')
         return render(request, "accounts/login_form.html", context)

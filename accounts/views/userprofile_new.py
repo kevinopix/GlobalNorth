@@ -16,17 +16,19 @@ class UserProfileRegisterView(LoginRequiredMixin, generic.TemplateView):
 
     def get(self, request):
         user_profile_pk = self.request.user.profile_pk_value
-        if user_profile_pk > 0 and not self.request.user.is_staff:
+        print(user_profile_pk)
+        if user_profile_pk is not None and user_profile_pk > 0 and not self.request.user.is_staff:
             messages.info(self.request, 'Your User Profile Already Exists')
             return redirect('/accounts/profile/{a}/view'.format(a=user_profile_pk))
-        form = self.form_class(None)
-        context = self.get_context_data()
-        context['form'] = form
-        context['project'] = self.project_name
-        user_mail = self.request.user.email
-        context['user_mail'] = user_mail
-        rotate_token(self.request)
-        return render(request, self.template_name, context)
+        else:
+            form = self.form_class(None)
+            context = self.get_context_data()
+            context['form'] = form
+            context['project'] = self.project_name
+            user_mail = self.request.user.email
+            context['user_mail'] = user_mail
+            rotate_token(self.request)
+            return render(request, self.template_name, context)
 
     def post(self, request):
         form = self.form_class(request.POST)

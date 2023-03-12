@@ -96,21 +96,20 @@ Registration Form
     <div class="container">
         <div class="card card-login mx-auto text-center"
             style="background: rgb(253, 227, 227) !important;" id="form_login">
+            {% if messages %}
+            {% for message in messages %}
+            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
+                 role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
             <div class="card-header mx-auto" style="background: rgb(253, 227, 227) !important;">
                 <span>{{project}} - Add New User </span>
             </div>
             <div class="card-body">
                 <form class="form-horizontal" action='' method="POST">
                     {% csrf_token %}
-
-                    {% if messages %}
-                    {% for message in messages %}
-                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
-                         role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
-                        {{ message }}
-                    </div>
-                    {% endfor %}
-                    {% endif %}
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
