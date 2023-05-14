@@ -9,3 +9,6 @@ class Package(models.Model):
 
     def __str__(self):
         return self.name + "Package"
+
+    def get_absolute_url(self):
+        return f"/services/package/{self.pk}/view/"
