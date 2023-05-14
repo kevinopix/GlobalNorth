@@ -17,8 +17,6 @@ class UserLoginView(generic.TemplateView):
         rotate_token(request)
         form = UserLoginForm()
         context['form'] = form
-        # nxt = request.GET.get("next", None)
-        # print(context)
         if self.request.user.is_authenticated:
             return redirect('home')
         return render(request, "accounts/login_form.html", context)
@@ -27,7 +25,6 @@ class UserLoginView(generic.TemplateView):
         form = UserLoginForm(self.request.POST)
         if form.is_valid():
             username = form.cleaned_data['email']
-            print(username)
             user = authenticate(
                 username=username,
                 password=form.cleaned_data['password']
