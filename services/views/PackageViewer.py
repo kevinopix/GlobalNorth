@@ -1,5 +1,6 @@
 # from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import ObjectDoesNotExist
+# from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from services.models import Package
@@ -21,9 +22,15 @@ class PackageViewerView(generic.TemplateView):
             # if package:
             context = self.get_context_data()
             context['package'] = package
+            try:
+                packages = Package.objects.all()
+                context['packages'] = packages
+            except:
+                pass
             rotate_token(self.request)
             return render(self.request, self.template_name, context)
-        except ObjectDoesNotExist:
+        except Http404:
+            print("Not exist")
             messages.error(self.request, "Package Does NOT exist.")
             return redirect('/')
 
