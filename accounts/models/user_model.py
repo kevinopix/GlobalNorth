@@ -35,4 +35,8 @@ class User(AbstractUser):
     @property
     def username(self):
         "Returns the person's full name."
-        return '%s%s' % (self.first_name, self.last_name[0])
+        try:
+            valu = '%s%s' % (self.first_name, self.last_name[0])
+        except:
+            valu = self.email
+        return valu

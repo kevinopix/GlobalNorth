@@ -1,0 +1,1 @@
+from .package_resource import PackageResource
