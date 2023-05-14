@@ -45,7 +45,8 @@ INSTALLED_APPS = [
 
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
-    'services.apps.ServicesConfig'
+    'services.apps.ServicesConfig',
+    'Payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -171,3 +172,12 @@ EMAIL_USE_SSL = False
 EMAIL_SETUP_DOMAIN = '127.0.0.1:8000'
 EMAIL_SETUP_SITENAME = 'GlobalNorth'
 EMAIL_SETUP_PROTOCOL = 'http'
+
+
+if DEBUG:
+    STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_TEST_PUBLISHABLE_KEY")
+    STRIPE_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY")
+# Uncomment these lines if you have a live keys
+# else:
+#     STRIPE_PUBLISHABLE_KEY = 'production_publishable_key'
+#     STRIPE_SECRET_KEY = 'production_secret_key'

@@ -19,16 +19,16 @@ class PackageViewerView(generic.TemplateView):
         package_pk = kwargs['pk']
         try:
             package = get_object_or_404(self.model, pk=package_pk)
-            # if package:
-            context = self.get_context_data()
-            context['package'] = package
-            try:
-                packages = Package.objects.all()
-                context['packages'] = packages
-            except:
-                pass
-            rotate_token(self.request)
-            return render(self.request, self.template_name, context)
+            if package.is_active:
+                context = self.get_context_data()
+                context['package'] = package
+                try:
+                    packages = Package.objects.all()
+                    context['packages'] = packages
+                except:
+                    pass
+                rotate_token(self.request)
+                return render(self.request, self.template_name, context)
         except Http404:
             print("Not exist")
             messages.error(self.request, "Package Does NOT exist.")
@@ -38,4 +38,6 @@ class PackageViewerView(generic.TemplateView):
         context = super(PackageViewerView, self).get_context_data(**kwargs)
         context['project'] = self.project_name
         context['page_title'] = self.page_title
+        context['stripe_publishable_key'] = settings.STRIPE_PUBLISHABLE_KEY
+        context['email'] = self.request.user.email
         return context

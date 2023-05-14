@@ -1,0 +1,1 @@
+from .payment_detail_resource import PaymentDetailResource

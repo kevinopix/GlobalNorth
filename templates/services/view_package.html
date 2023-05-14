@@ -19,9 +19,56 @@
             <h2>{{page_title}} Page</h2>
             <div class="col-md-12">
                 <h2>Package Name: {{package.name}}</h2>
+                <h2>Price: ${{package.price}}</h2>
+            </div>
+            <div class="card-footer d-flex">
+                <button class="btn btn-success ml-auto" id="checkout-button">Checkout</button>
             </div>
         </div>
     </div>
 </section>
+<p id="email">{{email}}</p>
 {% include 'footer.html' %}
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+    // Create an instance of the Stripe object with your publishable API key
+    var stripe = Stripe('{{ stripe_publishable_key }}');
+    var checkoutButton = document.getElementById('checkout-button');
+
+    checkoutButton.addEventListener('click', function () {
+        var email = document.getElementById("email").innerHTML;
+        console.log(email)
+        if (email.length == 0) {
+            alert("Please enter your email address.");
+            return;
+        }
+
+        // Create a new Checkout Session using the server-side endpoint you
+        // created in step 3.
+        fetch("{% url 'api_checkout_session' id=package.pk %}", {
+            method: 'POST',
+            body: JSON.stringify(
+                { email: email }
+            )
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (session) {
+                return stripe.redirectToCheckout({ sessionId: session.sessionId });
+            })
+            .then(function (result) {
+                // If `redirectToCheckout` fails due to a browser or network
+                // error, you should display the localized error message to your
+                // customer using `error.message`.
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    });
+</script>
+
 {% endblock %}
