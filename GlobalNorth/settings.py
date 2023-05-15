@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -173,10 +174,11 @@ EMAIL_SETUP_DOMAIN = '127.0.0.1:8000'
 EMAIL_SETUP_SITENAME = 'GlobalNorth'
 EMAIL_SETUP_PROTOCOL = 'http'
 
-
 if DEBUG:
-    STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_TEST_PUBLISHABLE_KEY")
-    STRIPE_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY")
+    STRIPE_PUBLISHABLE_KEY = config("STRIPE_TEST_PUBLISHABLE_KEY")
+    STRIPE_SECRET_KEY = config("STRIPE_TEST_SECRET_KEY")
+    DOMAIN_URL = 'http://127.0.0.1:8000'
+    STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET")
 # Uncomment these lines if you have a live keys
 # else:
 #     STRIPE_PUBLISHABLE_KEY = 'production_publishable_key'

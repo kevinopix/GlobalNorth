@@ -30,45 +30,71 @@
 <p id="email">{{email}}</p>
 {% include 'footer.html' %}
 <script src="https://js.stripe.com/v3/"></script>
-<script type="text/javascript">
-    // Create an instance of the Stripe object with your publishable API key
-    var stripe = Stripe('{{ stripe_publishable_key }}');
-    var checkoutButton = document.getElementById('checkout-button');
+<script>
+    console.log("Sanity check!");
 
-    checkoutButton.addEventListener('click', function () {
-        var email = document.getElementById("email").innerHTML;
-        console.log(email)
-        if (email.length == 0) {
-            alert("Please enter your email address.");
-            return;
-        }
+    // Get Stripe publishable key
+    fetch("/config/")
+    .then((result) => { return result.json(); })
+    .then((data) => {
+      // Initialize Stripe.js
+      const stripe = Stripe(data.publicKey);
 
-        // Create a new Checkout Session using the server-side endpoint you
-        // created in step 3.
-        fetch("{% url 'api_checkout_session' id=package.pk %}", {
-            method: 'POST',
-            body: JSON.stringify(
-                { email: email }
-            )
+      // Event handler
+      document.querySelector("#checkout-button").addEventListener("click", () => {
+        // Get Checkout Session ID
+        fetch("{% url 'create-checkout-session' pk=package.pk %}")
+        .then((result) => { return result.json(); })
+        .then((data) => {
+          console.log(data);
+          // Redirect to Stripe Checkout
+          return stripe.redirectToCheckout({sessionId: data.sessionId})
         })
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (session) {
-                return stripe.redirectToCheckout({ sessionId: session.sessionId });
-            })
-            .then(function (result) {
-                // If `redirectToCheckout` fails due to a browser or network
-                // error, you should display the localized error message to your
-                // customer using `error.message`.
-                if (result.error) {
-                    alert(result.error.message);
-                }
-            })
-            .catch(function (error) {
-                console.error('Error:', error);
-            });
+        .then((res) => {
+          console.log(res);
+        });
+      });
     });
 </script>
+<!--<script type="text/javascript">-->
+<!--    // Create an instance of the Stripe object with your publishable API key-->
+<!--    var stripe = Stripe('{{ stripe_publishable_key }}');-->
+<!--    var checkoutButton = document.getElementById('checkout-button');-->
+
+<!--    checkoutButton.addEventListener('click', function () {-->
+<!--        var email = document.getElementById("email").innerHTML;-->
+<!--        console.log(email)-->
+<!--        if (email.length == 0) {-->
+<!--            alert("Please enter your email address.");-->
+<!--            return;-->
+<!--        }-->
+
+<!--        // Create a new Checkout Session using the server-side endpoint you-->
+<!--        // created in step 3.-->
+<!--        fetch("", {-->
+<!--            method: 'POST',-->
+<!--            body: JSON.stringify(-->
+<!--                { email: email }-->
+<!--            )-->
+<!--        })-->
+<!--            .then(function (response) {-->
+<!--                return response.json();-->
+<!--            })-->
+<!--            .then(function (session) {-->
+<!--                return stripe.redirectToCheckout({ sessionId: session.sessionId });-->
+<!--            })-->
+<!--            .then(function (result) {-->
+<!--                // If `redirectToCheckout` fails due to a browser or network-->
+<!--                // error, you should display the localized error message to your-->
+<!--                // customer using `error.message`.-->
+<!--                if (result.error) {-->
+<!--                    alert(result.error.message);-->
+<!--                }-->
+<!--            })-->
+<!--            .catch(function (error) {-->
+<!--                console.error('Error:', error);-->
+<!--            });-->
+<!--    });-->
+<!--</script>-->
 
 {% endblock %}

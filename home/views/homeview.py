@@ -35,3 +35,7 @@ class HomeView(generic.TemplateView):
         except:
             pass
         return context
+
+
+class HomePageView(generic.TemplateView):
+    template_name = 'home/home.html'

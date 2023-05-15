@@ -39,5 +39,6 @@ class PackageViewerView(generic.TemplateView):
         context['project'] = self.project_name
         context['page_title'] = self.page_title
         context['stripe_publishable_key'] = settings.STRIPE_PUBLISHABLE_KEY
-        context['email'] = self.request.user.email
+        if self.request.user.is_authenticated:
+            context['email'] = self.request.user.email
         return context

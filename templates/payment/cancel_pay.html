@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ page_title }}
+{% endblock %}
+{% block content %}
+{% include 'header.html' %}
+<section>
+    <div class="container">
+        <div class="card mx-auto text-center">
+            {% if messages %}
+            {% for message in messages %}
+            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
+                 role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <h2>{{page_title}} Page</h2>
+        </div>
+        <div class="container">
+          <div class="jumbotron text-center mt-5">
+              <h1 class="text-danger">Payment Canceled</h1>
+              <p>We received your order. You can now close this window or use the
+                  link below to visit
+                  <a href="{% url 'home' %}">home page</a>.
+              </p>
+          </div>
+      </div>
+    </div>
+</section>
+{% include 'footer.html' %}
+{% endblock %}

@@ -4,7 +4,7 @@ from services.models import Package
 
 
 class PaymentDetail(models.Model):
-    id = models.BigAutoField(primary_key=True)
+    # id = models.BigAutoField(primary_key=True)
     customer_email = models.ForeignKey(to=UserProfile, verbose_name='Customer Email', on_delete=models.PROTECT)
     package = models.ForeignKey(to=Package, verbose_name='Package',on_delete=models.PROTECT)
     amount = models.IntegerField(verbose_name='Amount')
