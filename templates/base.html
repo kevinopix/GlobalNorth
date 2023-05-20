@@ -64,9 +64,10 @@ p.cap:first-letter {
 </head>
 
 <body style="font-family:Montserrat; width: 100%;margin: 0;">
-    {% block content %}
-    {% endblock %}
-
+    <section class="cardback">
+        {% block content %}
+        {% endblock %}
+    </section>
     <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>

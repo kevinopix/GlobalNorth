@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('services.urls')),
     path('', include('Payment.urls')),
+    path('tinymce/', include('tinymce.urls')),
 ]
