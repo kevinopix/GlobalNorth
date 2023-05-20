@@ -109,3 +109,87 @@ dropdown-toggle {
   padding: 0.1rem 0.2rem !important;
   display: block;
 }
+
+.main {
+    position: relative;
+    margin-top: -1.5rem;
+}
+#myCarousel{
+    max-height: 60vh;
+}
+
+.carousel-item img{
+    max-height: 60vh;
+    width: 100%;
+}
+
+.carousel-caption {
+    padding: 0.2rem 0.3rem;
+}
+
+.banner-main .carousel-caption h1 {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.banner-main .carousel-caption p {
+    font-size: 1rem;
+    padding: 20px 0px 40px 0px;
+}
+
+#myCarousel a.carousel-control-next {
+    position: absolute;
+    top: 40% !important;
+    left: inherit !important;
+    right: -22px !important;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    background: #4285f4;
+}
+
+#myCarousel a.carousel-control-prev {
+    position: absolute;
+    top: 40% !important;
+    left: -22px !important;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    background: #4285f4;
+}
+.carousel-item {
+  text-align: center;
+}
+
+.carousel-control-prev {
+  left: inherit;
+}
+
+#main_slider .carousel-control-prev,
+#main_slider .carousel-control-next {
+  width: 55px;
+  height: 55px;
+  background: #000;
+  opacity: 1;
+  font-size: 30px;
+  color: #fff;
+}
+
+#main_slider .carousel-control-prev:hover,
+#main_slider .carousel-control-next:hover,
+#main_slider .carousel-control-prev:focus,
+#main_slider .carousel-control-next:focus {
+  background: #fc4311;
+  color: #fff;
+}
+
+#main_slider a.carousel-control-prev {
+  position: absolute;
+  top: 40%;
+}
+
+#main_slider a.carousel-control-next {
+  position: absolute;
+  top: 40%;
+}

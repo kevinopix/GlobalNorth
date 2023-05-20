@@ -6,62 +6,16 @@
 {% block content %}
 {% include 'header.html' %}
 <section>
-    <div class="container">
-        <div class="card card-login mx-auto text-center">
-            {% if messages %}
-            {% for message in messages %}
-            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
-                 role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
-                {{ message }}
-            </div>
-            {% endfor %}
-            {% endif %}
-            <h2>HomePage</h2>
-
-            {% if user.is_authenticated %}
-            <div class="container mx-auto">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-3 pb-4">
-                        <div class="card p-4">
-                            <h4 class="card-title font-weight-bold text-center">Hello, {{ user.username|title }}</h4>
-                            <hr>
-                            <div class="card-text">
-                                <p class="text-muted mb-0" style="font-size: 12px">Username:</p>
-                                <p>{{ user.username }}</p>
-                                <p class="text-muted mb-0" style="font-size: 12px">Name:</p>
-                                <p>{{ user.first_name }} {{ user.last_name }}</p>
-                                <p class="text-muted mb-0" style="font-size: 12px">Email:</p>
-                                <p>{{ user.email }} </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-9 pb-4">
-                        ...
-                    </div>
-                </div>
-            </div>
-            {% else %}
-            <div>
-                <a href="/accounts/login" class="btn btn-warning">Login Here</a>
-            </div>
-            {% endif %}
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <h4>Our Mission</h4>
-                <p>
-                    {{mission.mission_text}}
-                </p>
-            </div>
-            <div class="col-md-6">
-                <h4>Our Vision</h4>
-                <p>
-                    {{vision.vision_text}}
-                </p>
-            </div>
-        </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
+         role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
+        {{ message }}
     </div>
+    {% endfor %}
+    {% endif %}
 
+    {% include 'home/carousel_home.html' %}
 </section>
 {% include 'footer.html' %}
 {% endblock %}
