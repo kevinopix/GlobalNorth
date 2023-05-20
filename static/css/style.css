@@ -3,6 +3,7 @@
 }
 
 .message_t{
+    display: block;
     margin-bottom: 0.5em;
     padding-top:0.5em;
     padding-bottom: 0.5em;
@@ -186,109 +187,4 @@ dropdown-toggle {
 #main_slider a.carousel-control-next {
   position: absolute;
   top: 40%;
-}
-.flexcss {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.service {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background: #f4f4f4;
-  margin-top: 0px;
-}
-.service-2 {
-  padding-top: 30px;
-  padding-bottom: 20px;
-  background: #e0e0e0;
-  margin-top: 90px;
-}
-
-.service .titlepage span {
-  color: #3d3c3c;
-}
-
-.service ul {
-  list-style-type: disc;
-  padding-left: 20px;
-}
-
-.service ul li {
-  margin-bottom: 10px;
-}
-
-
-.service-box {
-  padding: 20px; /* Increased padding to add more spacing */
-  text-align: center;
-  background-color: #ffffff; /* Updated background color to white */
-  color: #000000;
-  /* width: 350px;
-  height: 200px; Default height */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Added box shadow */
-  margin-bottom: 30px;
-  margin-right: 10px; /* Add right margin for spacing */
-  margin-left: 10px; /* Add left margin for spacing */
-  flex: 0 0 calc(100% - 20px); /* Calculate width for one card per row on mobile */
-  max-width: calc(100% - 20px); /* Set max width for responsiveness */
-}
-
-@media (min-width: 768px) {
-  /* Apply styling for small devices like tablets and larger */
-  .service-box {
-    flex: 0 0 calc(50% - 20px); /* Calculate width for two cards per row */
-    max-width: calc(50% - 20px); /* Set max width for responsiveness */
-  }
-}
-
-@media (min-width: 992px) {
-  /* Apply styling for medium-sized devices like laptops and larger */
-  .service-box {
-    flex: 0 0 calc(33.33% - 20px); /* Calculate width for three cards per row */
-    max-width: calc(33.33% - 20px); /* Set max width for responsiveness */
-  }
-}
-
-
-  @media (max-width: 767px) {
-    .service-box {
-      margin-bottom: 20px;
-    }
-  }
-.service .service-box figure {
-  margin: 30px;
-}
-.material-icons{
-    color: #FDE689;
-    font-size: 60px;
-    text-align: center;
-}
-.banner-main .carousel-caption h1{
-    color: #FDE689;
-}
-.titleborder{
-    width: 300px;
-    padding: 0.1rem 0.3rem;
-    border-top: 5px solid #FDE689;
-    margin: 40px auto;
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FDE689), to(transparent));
-    background-image: -webkit-linear-gradient(#FDE689, transparent);
-    background-image:
-        -moz-linear-gradient(#FDE689, transparent),
-        -moz-linear-gradient(#FDE689, transparent)
-    ;
-    background-image:
-        -o-linear-gradient(#FDE689, transparent),
-        -o-linear-gradient(#FDE689, transparent)
-    ;
-    background-image:
-        linear-gradient(#FDE689, transparent),
-        linear-gradient(#FDE689, transparent)
-    ;
-    -moz-background-size:5px 100%;
-    background-size:5px 100%;
-    background-position:0 0, 100% 0;
-    background-repeat:no-repeat;
 }

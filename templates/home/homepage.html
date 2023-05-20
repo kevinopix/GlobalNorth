@@ -7,17 +7,21 @@
 {% include 'header.html' %}
 <section>
     {% if messages %}
-    {% for message in messages %}
-    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
-         role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
-        {{ message }}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {% for message in messages %}
+            <div {% if message.tags %} class="{{ message.tags }} message_t"{% endif %}
+                 role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    {% endfor %}
     {% endif %}
 
     {% include 'home/carousel_home.html' %}
-    <br>
     {% include 'home/services.html' %}
+    {% include 'home/testimonials.html' %}
 </section>
 {% include 'footer.html' %}
 {% endblock %}
