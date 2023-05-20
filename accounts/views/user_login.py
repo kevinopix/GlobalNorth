@@ -53,4 +53,5 @@ class UserLoginView(generic.TemplateView):
 
     def get_context_data(self, **kwargs) :
         context = super(UserLoginView, self).get_context_data(**kwargs)
+        context["page_title"] = self.title
         return context

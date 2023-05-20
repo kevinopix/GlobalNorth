@@ -13,6 +13,7 @@ class UserProfileUpdateView(generic.TemplateView):
     form_class = UserProfileUpdateForm
     template_name = 'accounts/update_userprofile.html'
     project_name = settings.PROJECT_TITLE
+    title = "Update User Profile"
 
     def get(self, request, *args, **kwargs):
         profile_pk = kwargs['pk']
@@ -52,4 +53,5 @@ class UserProfileUpdateView(generic.TemplateView):
     def get_context_data(self, **kwargs) :
         context = super(UserProfileUpdateView, self).get_context_data(**kwargs)
         context['project'] = self.project_name
+        context["page_title"] = self.title
         return context

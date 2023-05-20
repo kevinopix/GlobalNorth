@@ -12,12 +12,11 @@
     box-shadow: box-shadow: 0 0 0 0.5;
     transition: 0.3s;
     width: 100%;
-    z-index: -999;
+    z-index: 1;
 }
 
 .card:hover {
    box-shadow: 0 0 0 0.8;
-   z-index: -999;
 }
 
 .card-one{
@@ -66,13 +65,6 @@ p.cap:first-letter {
     }
 }
 
-.dropdown-menu{
-    z-index: 9999999999999;
-}
-.cardback{
-    z-index: -9999999999;
-}
-
 .navbar.navbar-light .navbar-nav .nav-item.active>.nav-link {
     background-color: transparent;
 }
@@ -85,7 +77,6 @@ p.cap:first-letter {
 }
 .dropdown-menu{
     text-align: center;
-    z-index: 99999999999999999 !important;
     background-color: #4285f4;
     position: fixed;
 }
@@ -98,7 +89,6 @@ p.cap:first-letter {
 .navbar .dropdown-menu a:not(.active) {
     color: #fff;
     padding: 0.1rem 0.2rem !important;
-    z-index: 99999999999999999 !important;
     display: block;
 }
 .navbar .dropdown-menu a:not(.active):hover {
@@ -117,9 +107,5 @@ dropdown-toggle {
 .dropdown-menu>li>a{
   color: #fff;
   padding: 0.1rem 0.2rem !important;
-  z-index: 99999999999999999 !important;
   display: block;
-}
-.show{
-    z-index: 999999999999999999999999999999999999999999999999;
 }

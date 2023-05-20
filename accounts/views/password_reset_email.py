@@ -14,6 +14,7 @@ from django.views import generic
 
 
 class PasswordResetRequestView(generic.TemplateView):
+    title = "Password Reset"
     def get(self, request, *args, **kwargs):
         password_reset_form = PasswordResetForm()
         context = self.get_context_data()
@@ -51,5 +52,6 @@ class PasswordResetRequestView(generic.TemplateView):
 
     def get_context_data(self, **kwargs) :
         context = super(PasswordResetRequestView, self).get_context_data(**kwargs)
+        context['page_title'] = self.title
         return context
 

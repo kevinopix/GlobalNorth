@@ -19,4 +19,5 @@ class UserLogoutView(generic.TemplateView):
 
     def get_context_data(self, **kwargs) :
         context = super(UserLogoutView, self).get_context_data(**kwargs)
+        context["page_title"] = self.title
         return context

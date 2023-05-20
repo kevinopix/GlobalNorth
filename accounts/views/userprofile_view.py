@@ -12,6 +12,7 @@ class UserProfileView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'accounts/view_userprofile.html'
     project_name = settings.PROJECT_TITLE
     model = UserProfile
+    title = "View Profile"
 
     def get(self, request, *args, **kwargs):
         profile_pk = kwargs['pk']
@@ -40,4 +41,5 @@ class UserProfileView(LoginRequiredMixin, generic.TemplateView):
 
     def get_context_data(self, **kwargs) :
         context = super(UserProfileView, self).get_context_data(**kwargs)
+        context["page_title"] = self.title
         return context

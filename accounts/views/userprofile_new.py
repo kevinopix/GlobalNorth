@@ -13,6 +13,7 @@ class UserProfileRegisterView(LoginRequiredMixin, generic.TemplateView):
     form_class = UserProfileCreationForm
     template_name = 'accounts/new_userprofile.html'
     project_name = settings.PROJECT_TITLE
+    title = "New User Profile"
 
     def get(self, request):
         user_profile_pk = self.request.user.profile_pk_value
@@ -64,4 +65,5 @@ class UserProfileRegisterView(LoginRequiredMixin, generic.TemplateView):
 
     def get_context_data(self, **kwargs) :
         context = super(UserProfileRegisterView, self).get_context_data(**kwargs)
+        context["page_title"] = self.title
         return context

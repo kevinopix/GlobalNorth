@@ -12,6 +12,7 @@ class UserRegisterView(generic.TemplateView):
     form_class = UserRegisterForm
     template_name = 'accounts/registration_form.html'
     project_name = settings.PROJECT_TITLE
+    title = "New User Registration"
 
     def get(self, request):
         form = self.form_class(None)
@@ -53,4 +54,5 @@ class UserRegisterView(generic.TemplateView):
 
     def get_context_data(self, **kwargs) :
         context = super(UserRegisterView, self).get_context_data(**kwargs)
+        context["page_title"] = self.title
         return context
