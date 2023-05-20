@@ -21,6 +21,9 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                         {% if packages %}
+                            <a class="dropdown-item" href="/services/package/list">
+                                All Packages
+                            </a>
                         {% for each in packages %}
                             <a class="dropdown-item" href="/services/package/{{each.pk}}/view">
                                 {{each.name}}
@@ -67,5 +70,3 @@
         </ul>
     </div>
 </nav>
-
-<br>

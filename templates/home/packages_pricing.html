@@ -1,0 +1,29 @@
+{% if packages %}
+<section class="landing_h" style="">
+    <div class="container">
+        <div class="row align-items-center">
+            {% for each in packages %}
+            <div class="col-md-4 text-center">
+                <div class="price-box">
+                    <div class="">
+                        <div class="price-label basic" style="background: {{each.package_color}}">{{each.name}} Plan</div>
+                        <div class="price">$ {{each.price}}</div>
+                        <div class="price-info">{{each.subtitle}}</div>
+                    </div>
+                    <div class="info">
+                        {% if each.list_bullets %}
+                        <ul>
+                            {% for each in each.list_bullets %}
+                            <li><i class="fas fa-check"></i>{{each}}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <a href="/services/package/{{each.pk}}/view/" class="plan-btn">Join {{each.name}} Plan</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

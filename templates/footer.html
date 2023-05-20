@@ -1,4 +1,4 @@
-<br>
+
 <footer class="page-footer font-small special-color-dark pt-4">
     <div class="container">
         <div class="row">
@@ -18,6 +18,9 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2"
                                 style="width: 100%; text-align: center; padding: 0;margin: 0;">
                                 {% if packages %}
+                                    <a class="dropdown-item" href="/services/package/list">
+                                        All Packages
+                                    </a>
                                 {% for each in packages %}
                                     <a class="dropdown-item" href="/services/package/{{each.pk}}/view">
                                         {{each.name}}
