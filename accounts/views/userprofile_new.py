@@ -41,15 +41,14 @@ class UserProfileRegisterView(LoginRequiredMixin, generic.TemplateView):
                 existing_profile = UserProfile.objects.get(user__pk = existing_user.pk)
                 messages.info(self.request, 'UserProfile already Exists! You can only edit profile')
                 return redirect('/accounts/profile/{a}/view'.format(a=existing_profile.pk))
-            except ObjectDoesNotExist as e:
-                print(e)
+            except:
                 userprofile = UserProfile(
                     user=existing_user,
                     location=location,
                     is_active=True
                 )
                 userprofile.save()
-
+                print("User Profile created")
                 saved_profile = UserProfile.objects.get(user=existing_user)
                 saved_profile_user = User.objects.get(email=saved_profile.user.email)
                 saved_profile_user.profile_pk_value = saved_profile.pk

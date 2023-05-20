@@ -37,5 +37,3 @@ class HomeView(generic.TemplateView):
         return context
 
 
-class HomePageView(generic.TemplateView):
-    template_name = 'home/home.html'

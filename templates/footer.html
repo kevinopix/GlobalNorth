@@ -6,28 +6,43 @@
                 <ul class="list-unstyled text-center">
                     <li>
                         <a href="/" style="color: rgb(204, 203, 203);">
-                            <i class="fa fa-home" aria-hidden="true" style="margin-right: 0.5em;"></i>Home</a>
+                            <i class="fa fa-home" aria-hidden="true" style="margin-right: 0.2em;"></i>Home</a>
                     </li>
-<!--                    <li>-->
-<!--                        <a href="/return_calls/" style="color: rgb(204, 203, 203);"><i class="fa fa-phone" aria-hidden="true" style="margin-right: 0.5em;"></i>All Return Calls</a>-->
-<!--                    </li>-->
-                    <!-- <li>
-                        <a href="/unknowns/" style="color: rgb(204, 203, 203);"><i class="fa fa-database" aria-hidden="true" style="margin-right: 0.5em;"></i>Researched</a>
-                    </li> -->
-<!--                    <li>-->
-<!--                        <a href="/allcalls/" style="color: rgb(204, 203, 203);"><i class="fa fa-phone" aria-hidden="true" style="margin-right: 0.5em;"></i>All Made Calls</a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="/pending_unknowns/" style="color: rgb(204, 203, 203);"><i class="fa fa-hourglass-half" aria-hidden="true" style="margin-right: 0.5em;"></i>Pending Unknowns</a>-->
-<!--                    </li>-->
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn btn-primary btn-rounded btn-sm dropdown-toggle" type="button"
+                                id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Services
+                                <i class="fa fa-tasks" style="margin-left: 1em;"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2"
+                                style="width: 100%; text-align: center; padding: 0;margin: 0;">
+                                {% if packages %}
+                                {% for each in packages %}
+                                    <a class="dropdown-item" href="/services/package/{{each.pk}}/view">
+                                        {{each.name}}
+                                    </a>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-4">
                 <ul class="list-unstyled list-inline text-center py-2">
-<!--                    <li class="list-inline-item">-->
-<!--                        <button class="md-trigger btn btn-outline-white btn-rounded"-->
-<!--                            data-modal="modal-12">Start New<i class="fa fa-plus" style="margin-left: 1em;"></i></button>-->
-<!--                    </li>-->
+                    <li>
+                        <a href="tel:6146792620" style="color: rgb(204, 203, 203);">
+                            <i class="fa fa-phone" style="margin-right: 0.2em;"></i>
+                            6146792620
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:theglobalnorth@gmail.com" style="color: rgb(204, 203, 203);">
+                            <i class="fa fa-envelope" style="margin-right: 0.2em;"></i>
+                            theglobalnorth@gmail.com
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-4">
@@ -35,22 +50,29 @@
                     {% if user.is_authenticated %}
                     <li>
                         <a href="/accounts/logout/" style="color: rgb(204, 203, 203);">
-                            <i class="fa fa-user" style="margin-right: 0.5em;"></i>
+                            <i class="fa fa-user" style="margin-right: 0.2em;"></i>
                             Logout
                         </a>
                     </li>
                     {% if user.profile_pk_value > 0 %}
                     <li>
                         <a href="/accounts/profile/{{user.profile_pk_value}}/view" style="color: rgb(204, 203, 203);">
-                            <i class="fa fa-user" style="margin-right: 0.5em;"></i>
+                            <i class="fa fa-eye" style="margin-right: 0.2em;"></i>
                             My User Profile
+                        </a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="/accounts/profile/new" style="color: rgb(204, 203, 203);">
+                            <i class="fa fa-plus" style="margin-right: 0.2em;"></i>
+                            Add User Profile
                         </a>
                     </li>
                     {% endif %}
                     {% else %}
                     <li>
                         <a href="/accounts/login/" style="color: rgb(204, 203, 203);">
-                            <i class="fa fa-user" style="margin-right: 0.5em;"></i>
+                            <i class="fa fa-user" style="margin-right: 0.2em;"></i>
                             Login
                         </a>
                     </li>
