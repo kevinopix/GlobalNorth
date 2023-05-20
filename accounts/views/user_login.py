@@ -37,7 +37,7 @@ class UserLoginView(generic.TemplateView):
                     messages.success(self.request, message)
                     return redirect(nxt)
                 else:
-                    message = f'Hello {username}! You have been logged in'
+                    message = f'Hello {username}! Login Successful'
                     messages.success(self.request, message)
                     return redirect('home')
         else:
