@@ -7,16 +7,15 @@
 {% include 'header.html' %}
 <section>
     {% if messages %}
-    <div class="row">
-        <div class="col-md-12 text-center" style="width: 100%; padding:0; margin: 0;">
-            {% for message in messages %}
-            <div {% if message.tags %} class="{{ message.tags }} message_t"{% endif %}
-                 role="alert">
-                <p class="message_text">{{ message }}</p>
-            </div>
-            {% endfor %}
-        </div>
+    {% for message in messages %}
+    <div {% if message.tags %} class="{{ message.tags }} message_t alert-dismissible fade show text-center"{% endif %}
+         role="alert">
+        <p class="message_text">{{ message }}</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
+    {% endfor %}
     {% endif %}
 
     {% include 'home/carousel_home.html' %}
