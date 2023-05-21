@@ -5,9 +5,18 @@ User = get_user_model()
 
 
 class UserRegisterForm(forms.ModelForm):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': "Enter your Email"}
+    ))
+    first_name = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': "Enter your First Name"}
+    ))
+    last_name = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': "Enter your Last Name"}
+    ))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': "Enter your Password"}
+    ))
 
     class Meta:
         model = User

@@ -3,8 +3,6 @@
 }
 
 .message_t{
-    display: block;
-    margin-bottom: 0.5em;
     padding-top:0.5em;
     padding-bottom: 0.5em;
 }
@@ -370,7 +368,12 @@ dropdown-toggle {
         display: none;
     }
 }
-@media (min-width: 992px){
+
+@media (min-width: 991px){
+    .navbar .dropdown-menu {
+        position: relative !important;
+        margin-top: 0;
+    }
     .carousel-caption {
         right: 5%;
         left: 5%;
@@ -551,4 +554,16 @@ dropdown-toggle {
 }
 .nav-item .dropdown .dropdown-menu .dropdown-item{
     color: black;
+}
+
+@media (max-width: 992px){
+    .navbar-expand-lg .navbar-nav .dropdown-menu {
+        position: relative !important;
+    }
+}
+
+@media (min-width: 991px){
+    .navbar-expand-lg .navbar-nav .dropdown-menu {
+        position: absolute !important;
+    }
 }

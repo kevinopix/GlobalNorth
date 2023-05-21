@@ -17,7 +17,6 @@ class UserProfileRegisterView(LoginRequiredMixin, generic.TemplateView):
 
     def get(self, request):
         user_profile_pk = self.request.user.profile_pk_value
-        print(user_profile_pk)
         if user_profile_pk is not None and user_profile_pk > 0 and not self.request.user.is_staff:
             messages.info(self.request, 'Your User Profile Already Exists')
             return redirect('/accounts/profile/{a}/view'.format(a=user_profile_pk))
@@ -49,7 +48,6 @@ class UserProfileRegisterView(LoginRequiredMixin, generic.TemplateView):
                     is_active=True
                 )
                 userprofile.save()
-                print("User Profile created")
                 saved_profile = UserProfile.objects.get(user=existing_user)
                 saved_profile_user = User.objects.get(email=saved_profile.user.email)
                 saved_profile_user.profile_pk_value = saved_profile.pk
