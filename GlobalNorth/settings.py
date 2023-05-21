@@ -24,14 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u+a0=+=ryiib#)mdl0@2(o371%4#qsua(k=2cn(^zx7eb@=7c*'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
-
+if DEBUG:
+    ALLOWED_HOSTS = ['127.0.0.1','localhost']
+else:
+    ALLOWED_HOSTS = ['theglobalnorth.com']
 # Application definition
 
 INSTALLED_APPS = [
@@ -145,7 +145,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "accounts.User"
 
-PROJECT_TITLE = "GlobalNorth"
+PROJECT_TITLE = "The Global North"
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
@@ -171,15 +171,24 @@ EMAIL_USE_SSL = False
 
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # ADMINS = [("kevinopix", EMAIL_HOST_USER),]
-EMAIL_SETUP_DOMAIN = '127.0.0.1:8000'
-EMAIL_SETUP_SITENAME = 'GlobalNorth'
-EMAIL_SETUP_PROTOCOL = 'http'
 
 if DEBUG:
+    EMAIL_SETUP_DOMAIN = '127.0.0.1:8000'
+    EMAIL_SETUP_SITENAME = 'The Global North'
+    EMAIL_SETUP_PROTOCOL = 'http'
     STRIPE_PUBLISHABLE_KEY = config("STRIPE_TEST_PUBLISHABLE_KEY")
     STRIPE_SECRET_KEY = config("STRIPE_TEST_SECRET_KEY")
     DOMAIN_URL = 'http://127.0.0.1:8000'
     STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET")
+else:
+    EMAIL_SETUP_DOMAIN = '127.0.0.1:8000'
+    EMAIL_SETUP_SITENAME = 'The Global North'
+    EMAIL_SETUP_PROTOCOL = 'http'
+    STRIPE_PUBLISHABLE_KEY = config("STRIPE_TEST_PUBLISHABLE_KEY")
+    STRIPE_SECRET_KEY = config("STRIPE_TEST_SECRET_KEY")
+    DOMAIN_URL = 'http://127.0.0.1:8000'
+    STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET")
+
 # Uncomment these lines if you have a live keys
 # else:
 #     STRIPE_PUBLISHABLE_KEY = 'production_publishable_key'
