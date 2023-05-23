@@ -4,3 +4,5 @@ stripe
 python-decouple
 django-tinymce
 psycopg2-binary
+boto3
+django-storage
