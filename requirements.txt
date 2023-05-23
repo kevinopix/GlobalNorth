@@ -1,5 +1,4 @@
 django
-gunicorn
 django-import-export
 stripe
 python-decouple
