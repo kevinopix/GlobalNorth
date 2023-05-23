@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 from decouple import config
-# , RepositoryEnv
+import ast
 
 
 # config = Config(RepositoryEnv(".env"))
@@ -36,6 +36,17 @@ if DEBUG:
 else:
     ALLOWED_HOSTS = ['theglobalnorth.com','GlobalNorth-dev.us-west-2.elasticbeanstalk.com','globalnorth-dev.us-west-2.elasticbeanstalk']
 # Application definition
+if 'RDS_DB_NAME' in os.environ:
+    SECRET_KEY = os.environ['SECRET_KEY']
+    # DEBUG = bool(int(os.environ['DEBUG']))
+    host = os.environ['ALLOWED_HOST']
+    ALLOWED_HOSTS =  ast.literal_eval(host)
+else:
+    SECRET_KEY = config('SECRET_KEY')
+    # DEBUG = bool(int(os.getenv('DEBUG')))
+    host = os.getenv('ALLOWED_HOST')
+    # ALLOWED_HOSTS =  ast.literal_eval(host)
+    ALLOWED_HOSTS = ['127.0.0.1','localhost','54.202.144.113','172.31.63.210','GlobalNorth-dev.us-west-2.elasticbeanstalk.com','globalNorth-dev.us-west-2.elasticbeanstalk.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -156,20 +167,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-# STATIC_URL = '/static/'
-
-# Add these new lines
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = 'static/'
+# # STATIC_URL = '/static/'
+#
+# # Add these new lines
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
+#
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # STATIC_ROOT = os.path.join(BASE_DIR, "..", "www", "static")
 # STATIC_URL = '/static/'
 # STATIC_URL = '/static/'
 # STATIC_ROOT = 'static'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
