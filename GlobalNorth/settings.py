@@ -29,7 +29,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 if DEBUG:
-    ALLOWED_HOSTS = ['127.0.0.1','localhost','GlobalNorth-dev.us-west-2.elasticbeanstalk.com','globalnorth-dev.us-west-2.elasticbeanstalk']
+    ALLOWED_HOSTS = ['127.0.0.1','localhost','GlobalNorth-dev.us-west-2.elasticbeanstalk.com']
 else:
     ALLOWED_HOSTS = ['theglobalnorth.com','GlobalNorth-dev.us-west-2.elasticbeanstalk.com','globalnorth-dev.us-west-2.elasticbeanstalk']
 # Application definition
