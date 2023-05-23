@@ -3,3 +3,4 @@ django-import-export
 stripe
 python-decouple
 django-tinymce
+psycopg2-binary
