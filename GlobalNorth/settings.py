@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
-from decouple import Config, RepositoryEnv
+from decouple import config
+# , RepositoryEnv
+
 
 # config = Config(RepositoryEnv(".env"))
 
