@@ -45,8 +45,8 @@ if 'RDS_DB_NAME' in os.environ:
     # DEBUG = bool(int(os.environ['DEBUG']))
     # host = os.environ['ALLOWED_HOST']
     # ALLOWED_HOSTS =  ast.literal_eval(host)
-    ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '54.202.144.113',
-                     '172.31.63.210','GlobalNorth-dev.us-west-2.elasticbeanstalk.com',
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '54.202.144.113','172.31.63.210',
+                     'GlobalNorth-dev.us-west-2.elasticbeanstalk.com','www.theglobalnorth.com',
                      'globalNorth-dev.us-west-2.elasticbeanstalk.com','theglobalnorth.com']
 else:
     SECRET_KEY = config('SECRET_KEY')
