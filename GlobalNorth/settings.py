@@ -53,7 +53,9 @@ else:
     # DEBUG = bool(int(os.getenv('DEBUG')))
     host = os.getenv('ALLOWED_HOST')
     # ALLOWED_HOSTS =  ast.literal_eval(host)
-    ALLOWED_HOSTS = ['127.0.0.1','localhost','54.202.144.113','172.31.63.210','GlobalNorth-dev.us-west-2.elasticbeanstalk.com','globalNorth-dev.us-west-2.elasticbeanstalk.com']
+    ALLOWED_HOSTS = ['127.0.0.1','localhost','theglobalnorth.com','54.202.144.113',
+                     '172.31.63.210','GlobalNorth-dev.us-west-2.elasticbeanstalk.com',
+                     'globalNorth-dev.us-west-2.elasticbeanstalk.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
