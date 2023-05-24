@@ -38,7 +38,7 @@ if DEBUG:
                      'globalNorth-dev.us-west-2.elasticbeanstalk.com']
 else:
     ALLOWED_HOSTS = ['theglobalnorth.com','GlobalNorth-dev.us-west-2.elasticbeanstalk.com',
-                     'globalnorth-dev.us-west-2.elasticbeanstalk']
+                     'www.theglobalnorth.com','globalnorth-dev.us-west-2.elasticbeanstalk']
 # Application definition
 if 'RDS_DB_NAME' in os.environ:
     SECRET_KEY = os.environ['SECRET_KEY']
