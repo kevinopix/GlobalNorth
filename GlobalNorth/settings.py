@@ -30,7 +30,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '1').lower() in ['true', 't', '1']
 if DEBUG:
     ALLOWED_HOSTS = ['theglobalnorth.com','127.0.0.1','localhost','54.202.144.113',
                      '172.31.63.210','GlobalNorth-dev.us-west-2.elasticbeanstalk.com',
@@ -44,7 +45,9 @@ if 'RDS_DB_NAME' in os.environ:
     # DEBUG = bool(int(os.environ['DEBUG']))
     # host = os.environ['ALLOWED_HOST']
     # ALLOWED_HOSTS =  ast.literal_eval(host)
-    ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '54.202.144.113', '172.31.63.210','GlobalNorth-dev.us-west-2.elasticbeanstalk.com', 'globalNorth-dev.us-west-2.elasticbeanstalk.com']
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '54.202.144.113',
+                     '172.31.63.210','GlobalNorth-dev.us-west-2.elasticbeanstalk.com',
+                     'globalNorth-dev.us-west-2.elasticbeanstalk.com','theglobalnorth.com']
 else:
     SECRET_KEY = config('SECRET_KEY')
     # DEBUG = bool(int(os.getenv('DEBUG')))
