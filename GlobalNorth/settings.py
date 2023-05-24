@@ -35,7 +35,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '1').lower() in ['true', 't', '1']
 if DEBUG:
     ALLOWED_HOSTS = ['theglobalnorth.com','127.0.0.1','localhost','54.202.144.113',
                      '172.31.63.210','GlobalNorth-dev.us-west-2.elasticbeanstalk.com',
-                     'globalNorth-dev.us-west-2.elasticbeanstalk.com']
+                     'www.theglobalnorth.com','globalNorth-dev.us-west-2.elasticbeanstalk.com']
 else:
     ALLOWED_HOSTS = ['theglobalnorth.com','GlobalNorth-dev.us-west-2.elasticbeanstalk.com',
                      'www.theglobalnorth.com','globalnorth-dev.us-west-2.elasticbeanstalk']
