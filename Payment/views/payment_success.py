@@ -1,8 +1,9 @@
 import stripe
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseNotFound
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views import generic
 from Payment.models import PaymentDetail
 from services.models import Package
@@ -26,14 +27,18 @@ class PaymentSuccessView(LoginRequiredMixin,generic.TemplateView):
         product = Package.objects.get(name=package_name)
         # order = get_object_or_404(PaymentDetail, stripe_payment_intent=session.payment_intent)
         logged_user = self.request.user
-        userprofile = UserProfile.objects.get(user__pk=logged_user.pk)
-        order = PaymentDetail()
-        order.customer_email = userprofile
-        order.package = product
-        # order.package_id = product.id
-        order.stripe_payment_intent = session['payment_intent']
-        order.amount = amount_paid / 100
-        order.save()
-        order.has_paid = True
-        order.save()
-        return render(request, self.template_name)
+        try:
+            userprofile = UserProfile.objects.get(user__pk=logged_user.pk)
+            order = PaymentDetail()
+            order.customer_email = userprofile
+            order.package = product
+            # order.package_id = product.id
+            order.stripe_payment_intent = session['payment_intent']
+            order.amount = amount_paid / 100
+            order.save()
+            order.has_paid = True
+            order.save()
+            return render(request, self.template_name)
+        except:
+            messages.warning("User Profile Does NOT exist. Create one before proceeding!")
+            return redirect('/accounts/profile/new')
