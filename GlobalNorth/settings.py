@@ -244,15 +244,12 @@ else:
     EMAIL_SETUP_DOMAIN = '127.0.0.1:8000'
     EMAIL_SETUP_SITENAME = 'The Global North'
     EMAIL_SETUP_PROTOCOL = 'http'
-    STRIPE_PUBLISHABLE_KEY = config("STRIPE_TEST_PUBLISHABLE_KEY")
-    STRIPE_SECRET_KEY = config("STRIPE_TEST_SECRET_KEY")
     DOMAIN_URL = 'http://127.0.0.1:8000'
-    STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET")
+    if 'STRIPE_PROD_PUBLISHABLE_KEY' in os.environ:
+        # STRIPE_WEBHOOK_SECRET = os.environ["STRIPE_PROD_WEBHOOK_SECRET"]
+        STRIPE_PUBLISHABLE_KEY = os.environ["STRIPE_PROD_PUBLISHABLE_KEY"]
+        STRIPE_SECRET_KEY = os.environ["STRIPE_PROD_SECRET_KEY"]
 
-# Uncomment these lines if you have a live keys
-# else:
-#     STRIPE_PUBLISHABLE_KEY = 'production_publishable_key'
-#     STRIPE_SECRET_KEY = 'production_secret_key'
 
 if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
