@@ -40,5 +40,5 @@ class PaymentSuccessView(LoginRequiredMixin,generic.TemplateView):
             order.save()
             return render(request, self.template_name)
         except:
-            messages.warning("User Profile Does NOT exist. Create one before proceeding!")
+            messages.warning(self.request,"User Profile Does NOT exist. Create one before proceeding!")
             return redirect('/accounts/profile/new')
