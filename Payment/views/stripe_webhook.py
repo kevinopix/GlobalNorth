@@ -22,7 +22,20 @@ def stripe_webhook(request):
         event = stripe.Webhook.construct_event(
             payload, sig_header, endpoint_secret
         )
-        print(event['type'])
+        try:
+            user = request.user
+            userprofile = UserProfile.objects.get(user__pk=user.pk)
+            if event['type'] == 'checkout.session.completed':
+                session = event['data']['object']
+                client_reference_id = UserProfile.objects.get(user__pk=logged_user)
+                payment_intent = session.get("payment_intent")
+                itemz = session.get("display_items")
+                package = itemz["custom"]["name"]
+                if client_reference_id is None:
+                    return redirect('/accounts/login')
+                return HttpResponse(status=200)
+        except Exception as e:
+            return redirect('/accounts/profile/new')
     except ValueError as e:
         # Invalid payload
         return HttpResponse(status=400)
@@ -31,70 +44,33 @@ def stripe_webhook(request):
         return HttpResponse(status=400)
 
 
-    print(event['type'])
-    # Handle the checkout.session.completed event
-    if event['type'] == 'checkout.session.completed':
-        session = event['data']['object']
-        # print(session)
-        # This method will be called when user successfully purchases something.
-        # handle_checkout_session(session)
-        # client_reference_id = session.get("client_reference_id")
-        client_reference_id = UserProfile.objects.get(user__pk=logged_user)
-        payment_intent = session.get("payment_intent")
-        itemz = session.get("display_items")
-        package = itemz["custom"]["name"]
-        print(package)
-
-        if client_reference_id is None:
-            # Customer wasn't logged in when purchasing
-            print("User Profile DOES NOT Exist")
-            return redirect('/accounts/login')
-
-        # Customer was logged in we can now fetch the Django user and make changes to our models
-        try:
-            user = request.user
-            userprofile = UserProfile.objects.get(user__pk=user.pk)
-            print(user.email, "just purchased something.")
-
-            # order = PaymentDetail()
-            # order.customer_email = userprofile
-            # order.product = product
-            # order.stripe_payment_intent = checkout_session['payment_intent']
-            # order.amount = int(product.price * 100)
-            # order.save()
-
-        except Exception as e:
-            print(e)
-
-    return HttpResponse(status=200)
 
 
-@login_required
-def handle_checkout_session(session):
-    # client_reference_id = user's id
-    client_reference_id = session.get("client_reference_id")
-    payment_intent = session.get("payment_intent")
-    itemz = session.get("display_items")
-    package = itemz["custom"]["name"]
-    print(package)
-
-    if client_reference_id is None:
-        # Customer wasn't logged in when purchasing
-        print("User Profile DOES NOT Exist")
-        return redirect('/accounts/login')
-
-    # Customer was logged in we can now fetch the Django user and make changes to our models
-    try:
-        user = User.objects.get(id=client_reference_id)
-        userprofile = UserProfile.objects.get(user__pk=user.pk)
-        print(user.email, "just purchased something.")
-
-        order = PaymentDetail()
-        order.customer_email = userprofile
-        order.product = product
-        order.stripe_payment_intent = checkout_session['payment_intent']
-        order.amount = int(product.price * 100)
-        order.save()
-
-    except Exception as e:
-        print(e)
+# @login_required
+# def handle_checkout_session(session):
+#     # client_reference_id = user's id
+#     client_reference_id = session.get("client_reference_id")
+#     payment_intent = session.get("payment_intent")
+#     itemz = session.get("display_items")
+#     package = itemz["custom"]["name"]
+#     print(package)
+#
+#     if client_reference_id is None:
+#         # Customer wasn't logged in when purchasing
+#         print("User Profile DOES NOT Exist")
+#         return redirect('/accounts/login')
+#
+#     # Customer was logged in we can now fetch the Django user and make changes to our models
+#     try:
+#         user = User.objects.get(id=client_reference_id)
+#         userprofile = UserProfile.objects.get(user__pk=user.pk)
+#         print(user.email, "just purchased something.")
+#
+#         order = PaymentDetail()
+#         order.customer_email = userprofile
+#         order.product = product
+#         order.stripe_payment_intent = checkout_session['payment_intent']
+#         order.amount = int(product.price * 100)
+#         order.save()
+#     except Exception as e:
+#         print(e)

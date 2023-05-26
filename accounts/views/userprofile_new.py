@@ -7,6 +7,7 @@ from accounts.models import User, UserProfile
 from django.views import generic
 from django.conf import settings
 from django.middleware.csrf import rotate_token
+from services.models import Package
 
 
 class UserProfileRegisterView(LoginRequiredMixin, generic.TemplateView):
@@ -64,4 +65,9 @@ class UserProfileRegisterView(LoginRequiredMixin, generic.TemplateView):
     def get_context_data(self, **kwargs) :
         context = super(UserProfileRegisterView, self).get_context_data(**kwargs)
         context["page_title"] = self.title
+        try:
+            packages = Package.objects.all()
+            context['packages'] = packages
+        except:
+            pass
         return context

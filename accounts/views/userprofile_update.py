@@ -6,6 +6,7 @@ from django.views.generic.edit import UpdateView
 from accounts.models import UserProfile
 from accounts.forms import UserProfileUpdateForm
 from django.conf import settings
+from services.models import Package
 
 
 class UserProfileUpdateView(generic.TemplateView):
@@ -54,4 +55,9 @@ class UserProfileUpdateView(generic.TemplateView):
         context = super(UserProfileUpdateView, self).get_context_data(**kwargs)
         context['project'] = self.project_name
         context["page_title"] = self.title
+        try:
+            packages = Package.objects.all()
+            context['packages'] = packages
+        except:
+            pass
         return context

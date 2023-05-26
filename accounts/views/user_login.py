@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.middleware.csrf import rotate_token
 from django.views import generic
+from services.models import Package
 
 
 class UserLoginView(generic.TemplateView):
@@ -54,4 +55,9 @@ class UserLoginView(generic.TemplateView):
     def get_context_data(self, **kwargs) :
         context = super(UserLoginView, self).get_context_data(**kwargs)
         context["page_title"] = self.title
+        try:
+            packages = Package.objects.all()
+            context['packages'] = packages
+        except:
+            pass
         return context

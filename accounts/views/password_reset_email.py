@@ -11,6 +11,7 @@ from django.utils.encoding import force_bytes
 from django.contrib import messages
 from django.conf import settings
 from django.views import generic
+from services.models import Package
 
 
 class PasswordResetRequestView(generic.TemplateView):
@@ -53,5 +54,10 @@ class PasswordResetRequestView(generic.TemplateView):
     def get_context_data(self, **kwargs) :
         context = super(PasswordResetRequestView, self).get_context_data(**kwargs)
         context['page_title'] = self.title
+        try:
+            packages = Package.objects.all()
+            context['packages'] = packages
+        except:
+            pass
         return context
 

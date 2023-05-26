@@ -42,3 +42,12 @@ class PaymentSuccessView(LoginRequiredMixin,generic.TemplateView):
         except:
             messages.warning(self.request,"User Profile Does NOT exist. Create one before proceeding!")
             return redirect('/accounts/profile/new')
+
+    def get_context_data(self, **kwargs):
+        context = super(PaymentSuccessView, self).get_context_data(**kwargs)
+        try:
+            packages = Package.objects.all()
+            context['packages'] = packages
+        except:
+            pass
+        return context

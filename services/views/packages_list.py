@@ -31,4 +31,9 @@ class PackagesListView(generic.TemplateView):
         context = super(PackagesListView, self).get_context_data(**kwargs)
         context['project'] = self.project_name
         context['page_title'] = self.page_title
+        try:
+            packages = Package.objects.all()
+            context['packages'] = packages
+        except:
+            pass
         return context

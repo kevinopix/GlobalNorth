@@ -41,4 +41,9 @@ class PackageViewerView(generic.TemplateView):
         context['stripe_publishable_key'] = settings.STRIPE_PUBLISHABLE_KEY
         if self.request.user.is_authenticated:
             context['email'] = self.request.user.email
+        try:
+            packages = Package.objects.all()
+            context['packages'] = packages
+        except:
+            pass
         return context
