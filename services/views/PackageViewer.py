@@ -42,7 +42,7 @@ class PackageViewerView(generic.TemplateView):
         if self.request.user.is_authenticated:
             context['email'] = self.request.user.email
         try:
-            packages = Package.objects.all()
+            packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
         except:
             pass

@@ -55,7 +55,7 @@ class PasswordResetRequestView(generic.TemplateView):
         context = super(PasswordResetRequestView, self).get_context_data(**kwargs)
         context['page_title'] = self.title
         try:
-            packages = Package.objects.all()
+            packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
         except:
             pass

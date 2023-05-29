@@ -32,7 +32,7 @@ class PackagesListView(generic.TemplateView):
         context['project'] = self.project_name
         context['page_title'] = self.page_title
         try:
-            packages = Package.objects.all()
+            packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
         except:
             pass

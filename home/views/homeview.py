@@ -20,7 +20,7 @@ class HomeView(generic.TemplateView):
         context['title'] = self.title
         context['project'] = self.project_name
         try:
-            packages = Package.objects.all()
+            packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
         except:
             pass

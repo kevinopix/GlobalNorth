@@ -9,7 +9,7 @@ class PaymentFailedView(LoginRequiredMixin,generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(PaymentFailedView, self).get_context_data(**kwargs)
         try:
-            packages = Package.objects.all()
+            packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
         except:
             pass
