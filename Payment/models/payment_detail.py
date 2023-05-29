@@ -14,7 +14,11 @@ class PaymentDetail(models.Model):
     updated_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "{a} --- {b} --- {c} --- {d}".format(a=str(self.id),
+        try:
+            ret = "{a} --- {b} --- {c} --- {d}".format(a=str(self.id),
                                             b=str(self.customer_email.email),
                                             c=str(self.amount),
                                             d=str(self.package.name))
+        except:
+            ret = str(self.id)
+        return ret
