@@ -251,6 +251,7 @@ if 'STRIPE_PROD_PUBLISHABLE_KEY' in os.environ:
     # STRIPE_WEBHOOK_SECRET = os.environ["STRIPE_PROD_WEBHOOK_SECRET"]
     STRIPE_PUBLISHABLE_KEY = os.environ["STRIPE_PROD_PUBLISHABLE_KEY"]
     STRIPE_SECRET_KEY = os.environ["STRIPE_PROD_SECRET_KEY"]
+    DOMAIN_URL = 'https://theglobalnorth.com'
 
 
 if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
