@@ -14,7 +14,11 @@
                         {% if each.list_bullets %}
                         <ul>
                             {% for each in each.list_bullets %}
-                            <li><i class="fas fa-check"></i>{{each}}</li>
+                            <li>
+<!--                                <i class="fas fa-check"></i>-->
+                                <span class="material-symbols-outlined">check</span>
+                                {{each}}
+                            </li>
                             {% endfor %}
                         </ul>
                         {% endif %}
