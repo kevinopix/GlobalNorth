@@ -33,7 +33,7 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = True
 if 'RDS_DB_NAME' in os.environ:
     SECRET_KEY = os.environ['SECRET_KEY']
-    ALLOWED_HOSTS = ['https://*.theglobalnorth.com']
+    ALLOWED_HOSTS = ['theglobalnorth.com']
 else:
     SECRET_KEY = config('SECRET_KEY')
     # DEBUG = bool(int(os.getenv('DEBUG')))
@@ -188,9 +188,9 @@ if 'STRIPE_PROD_PUBLISHABLE_KEY' in os.environ:
     # STRIPE_WEBHOOK_SECRET = os.environ["STRIPE_PROD_WEBHOOK_SECRET"]
     STRIPE_PUBLISHABLE_KEY = os.environ["STRIPE_PROD_PUBLISHABLE_KEY"]
     STRIPE_SECRET_KEY = os.environ["STRIPE_PROD_SECRET_KEY"]
-    DOMAIN_URL = 'https://*.theglobalnorth.com'
+    DOMAIN_URL = 'https://theglobalnorth.com'
     DEBUG = bool(int(os.environ["DEBUG_VALUE"]))
-    CSRF_TRUSTED_ORIGINS = ['https://*.theglobalnorth.com']
+    CSRF_TRUSTED_ORIGINS = ['https://theglobalnorth.com']
 
 
 
