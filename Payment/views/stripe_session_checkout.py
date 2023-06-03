@@ -48,6 +48,9 @@ def create_checkout_session(request, **kwargs):
                     return JsonResponse({'sessionId': checkout_session['id']})
                 except Exception as e:
                     return JsonResponse({'error': str(e)})
+            else:
+                messages.warning(request, "User Profile Does NOT exist")
+                return redirect('/accounts/profile/new')
         except:
             messages.warning(request, "User Profile Does NOT exist")
             return redirect('/accounts/profile/new')

@@ -30,32 +30,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = os.environ.get('DJANGO_DEBUG', '1').lower() in ['true', 't', '1']
-if DEBUG:
-    ALLOWED_HOSTS = ['theglobalnorth.com','127.0.0.1','localhost','54.202.144.113',
-                     '172.31.63.210','GlobalNorth-dev.us-west-2.elasticbeanstalk.com',
-                     'www.theglobalnorth.com','globalNorth-dev.us-west-2.elasticbeanstalk.com']
-else:
-    ALLOWED_HOSTS = ['theglobalnorth.com','GlobalNorth-dev.us-west-2.elasticbeanstalk.com',
-                     'www.theglobalnorth.com','globalnorth-dev.us-west-2.elasticbeanstalk']
-# Application definition
+DEBUG = True
 if 'RDS_DB_NAME' in os.environ:
     SECRET_KEY = os.environ['SECRET_KEY']
-    # DEBUG = bool(int(os.environ['DEBUG']))
-    # host = os.environ['ALLOWED_HOST']
-    # ALLOWED_HOSTS =  ast.literal_eval(host)
-    ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '54.202.144.113','172.31.63.210',
-                     'GlobalNorth-dev.us-west-2.elasticbeanstalk.com','www.theglobalnorth.com',
-                     'globalNorth-dev.us-west-2.elasticbeanstalk.com','theglobalnorth.com']
+    ALLOWED_HOSTS = ['https://*.theglobalnorth.com']
 else:
     SECRET_KEY = config('SECRET_KEY')
     # DEBUG = bool(int(os.getenv('DEBUG')))
     host = os.getenv('ALLOWED_HOST')
     # ALLOWED_HOSTS =  ast.literal_eval(host)
-    ALLOWED_HOSTS = ['127.0.0.1','localhost','theglobalnorth.com','54.202.144.113',
-                     '172.31.63.210','GlobalNorth-dev.us-west-2.elasticbeanstalk.com',
-                     'globalNorth-dev.us-west-2.elasticbeanstalk.com']
+    ALLOWED_HOSTS = ['127.0.0.1','localhost','*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -129,22 +113,6 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-    # try:
-    #     DATABASES = {
-    #         'default': {
-    #             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #             'NAME': 'iotd',
-    #             'USER': 'iotd',
-    #             'PASSWORD': 'iotd',
-    #             'HOST': 'localhost',
-    #             'PORT': '5432',
-    #         }
-    #     }
-    # except:
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -161,31 +129,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 STATIC_URL = '/static/'
-
-# Add these new lines
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 AUTH_USER_MODEL = "accounts.User"
-
 PROJECT_TITLE = "The Global North"
 
 LOGIN_REDIRECT_URL = "/"
