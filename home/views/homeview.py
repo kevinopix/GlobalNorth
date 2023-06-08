@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.views import generic
 from django.conf import settings
-from services.models import Package
+from services.models import Package, Price
 from home.models import Mission, Vision
 
 
@@ -22,6 +22,7 @@ class HomeView(generic.TemplateView):
         try:
             packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
+            context['prices'] = Price.objects.all()
         except:
             pass
         try:
