@@ -22,20 +22,6 @@ def stripe_webhook(request):
         event = stripe.Webhook.construct_event(
             payload, sig_header, endpoint_secret
         )
-        try:
-            user = request.user
-            userprofile = UserProfile.objects.get(user__pk=user.pk)
-            if event['type'] == 'checkout.session.completed':
-                session = event['data']['object']
-                client_reference_id = UserProfile.objects.get(user__pk=logged_user)
-                payment_intent = session.get("payment_intent")
-                itemz = session.get("display_items")
-                package = itemz["custom"]["name"]
-                if client_reference_id is None:
-                    return redirect('/accounts/login')
-                return HttpResponse(status=200)
-        except Exception as e:
-            return redirect('/accounts/profile/new')
     except ValueError as e:
         # Invalid payload
         return HttpResponse(status=400)
@@ -43,7 +29,22 @@ def stripe_webhook(request):
         # Invalid signature
         return HttpResponse(status=400)
 
-
+    try:
+        user = request.user
+        userprofile = UserProfile.objects.get(user__pk=user.pk)
+        if userprofile:
+            if event['type'] == 'checkout.session.completed':
+                session = event['data']['object']
+                payment_intent = session.get("payment_intent")
+                itemz = session.get("display_items")
+                package = itemz["custom"]["name"]
+                return HttpResponse(status=200)
+        else:
+            client_reference_id = UserProfile.objects.get(user__pk=logged_user)
+            if client_reference_id is None:
+                return redirect('/accounts/login')
+    except Exception as e:
+        return redirect('/accounts/profile/new')
 
 
 # @login_required
