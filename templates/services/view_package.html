@@ -73,7 +73,10 @@
       document.querySelector("#checkout-button").addEventListener("click", () => {
         // Get Checkout Session ID
         fetch("{% url 'create-checkout-session' pk=package.pk %}")
-        .then((result) => { return result.json(); })
+        .then((result) => {
+            console.log(result);
+            return result.json();
+        })
         .then((data) => {
           // console.log(data);
           // Redirect to Stripe Checkout
