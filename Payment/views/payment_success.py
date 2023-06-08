@@ -22,9 +22,10 @@ class PaymentSuccessView(LoginRequiredMixin,generic.TemplateView):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         session = stripe.checkout.Session.retrieve(session_id)
         # print(session)
-        amount_paid = session["display_items"][0]['amount']
-        package_name = session["display_items"][0]["custom"]['name']
-        product = Package.objects.get(name=package_name)
+        # amount_paid = session["display_items"][0]['amount']
+        amount_paid = session["amount_total"]
+        package_id = session["metadata"]["product_id"]
+        product = Package.objects.get(id=package_id)
         # order = get_object_or_404(PaymentDetail, stripe_payment_intent=session.payment_intent)
         logged_user = self.request.user
         try:

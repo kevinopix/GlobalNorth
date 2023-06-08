@@ -14,7 +14,6 @@ def validate_bullet_briefs(value):
 class Package(models.Model):
     name = models.CharField(max_length=100)
     subtitle = models.CharField(max_length=30, null=True, blank=True)
-    price = models.IntegerField()
     description = HTMLField()
     bullet_briefs = models.TextField(null=True, blank=True,
                                      help_text="Add each bullet sepeare by two dashes '--'",
@@ -28,9 +27,6 @@ class Package(models.Model):
     def get_absolute_url(self):
         return f"/services/package/{self.pk}/view/"
 
-    @property
-    def stripe_price_id(self):
-        return "custom_" + str(self.price)
 
     @property
     def package_color(self):

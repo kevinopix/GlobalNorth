@@ -3,7 +3,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from services.models import Package
+from services.models import Package, Price
 from django.views import generic
 from django.conf import settings
 from django.middleware.csrf import rotate_token
@@ -17,10 +17,11 @@ class PackageViewerView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
         package_pk = kwargs['pk']
+        context = self.get_context_data()
         try:
             package = get_object_or_404(self.model, pk=package_pk)
+            context["prices"] = Price.objects.filter(product=package)
             if package.is_active:
-                context = self.get_context_data()
                 context['package'] = package
                 try:
                     packages = Package.objects.all()
@@ -41,9 +42,4 @@ class PackageViewerView(generic.TemplateView):
         context['stripe_publishable_key'] = settings.STRIPE_PUBLISHABLE_KEY
         if self.request.user.is_authenticated:
             context['email'] = self.request.user.email
-        try:
-            packages = Package.objects.filter(is_active=True)
-            context['packages'] = packages
-        except:
-            pass
         return context

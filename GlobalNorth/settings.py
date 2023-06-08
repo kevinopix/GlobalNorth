@@ -169,28 +169,29 @@ EMAIL_USE_SSL = False
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # ADMINS = [("kevinopix", EMAIL_HOST_USER),]
 
-if DEBUG:
-    EMAIL_SETUP_DOMAIN = '127.0.0.1:8000'
-    EMAIL_SETUP_SITENAME = 'The Global North'
-    EMAIL_SETUP_PROTOCOL = 'http'
-    STRIPE_PUBLISHABLE_KEY = config("STRIPE_TEST_PUBLISHABLE_KEY")
-    STRIPE_SECRET_KEY = config("STRIPE_TEST_SECRET_KEY")
-    DOMAIN_URL = 'http://127.0.0.1:8000'
-    STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET")
-else:
-    EMAIL_SETUP_DOMAIN = '127.0.0.1:8000'
-    EMAIL_SETUP_SITENAME = 'The Global North'
-    EMAIL_SETUP_PROTOCOL = 'http'
-    DOMAIN_URL = 'http://127.0.0.1:8000'
 
 
-if 'STRIPE_PROD_PUBLISHABLE_KEY' in os.environ:
+if 'STRIPE_PROD_PUBLISHABLE_KEY' in os.environ and DEBUG==False:
     # STRIPE_WEBHOOK_SECRET = os.environ["STRIPE_PROD_WEBHOOK_SECRET"]
     STRIPE_PUBLISHABLE_KEY = os.environ["STRIPE_PROD_PUBLISHABLE_KEY"]
     STRIPE_SECRET_KEY = os.environ["STRIPE_PROD_SECRET_KEY"]
     DOMAIN_URL = 'https://theglobalnorth.com'
     DEBUG = bool(int(os.environ["DEBUG_VALUE"]))
     CSRF_TRUSTED_ORIGINS = ['https://theglobalnorth.com']
+else:
+    if DEBUG:
+        EMAIL_SETUP_DOMAIN = '127.0.0.1:8000'
+        EMAIL_SETUP_SITENAME = 'The Global North'
+        EMAIL_SETUP_PROTOCOL = 'http'
+        STRIPE_PUBLISHABLE_KEY = config("STRIPE_TEST_PUBLISHABLE_KEY")
+        STRIPE_SECRET_KEY = config("STRIPE_TEST_SECRET_KEY")
+        DOMAIN_URL = 'http://127.0.0.1:8000'
+        STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET")
+    else:
+        EMAIL_SETUP_DOMAIN = '127.0.0.1:8000'
+        EMAIL_SETUP_SITENAME = 'The Global North'
+        EMAIL_SETUP_PROTOCOL = 'http'
+        DOMAIN_URL = 'http://127.0.0.1:8000'
 
 
 
@@ -206,3 +207,7 @@ if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
 
 if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     SECURE_SSL_REDIRECT = True
+
+
+PAYMENT_CANCEL_URL = DOMAIN_URL + "/pay/cancel/"
+PAYMENT_SUCCESS_URL = DOMAIN_URL + "/pay/success/"
