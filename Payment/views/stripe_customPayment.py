@@ -1,0 +1,19 @@
+from django.conf import settings
+from django.views.generic import TemplateView
+from services.models import Package
+
+
+class CustomPaymentView(TemplateView):
+    template_name = "services/custom_payment.html"
+
+    def get_context_data(self, **kwargs):
+        # product = Product.objects.get(name="Test Product")
+        # prices = Price.objects.filter(product=product)
+        product = Package.objects.get(id=kwargs['pk'])
+        context = super(CustomPaymentView, self).get_context_data(**kwargs)
+        context.update({
+            "product": product,
+            # "prices": prices,
+            "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLISHABLE_KEY
+        })
+        return context
