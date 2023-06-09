@@ -212,3 +212,14 @@ if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
 
 PAYMENT_CANCEL_URL = DOMAIN_URL + "/pay/cancel/"
 PAYMENT_SUCCESS_URL = DOMAIN_URL + "/pay/success/"
+
+TINYMCE_DEFAULT_CONFIG = {
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'width': 1200,
+    'selector': 'textarea',
+    'theme': 'silver'
+}
+
+TINYMCE_JS_URL = os.path.join(STATIC_URL, "tinymce/tinymce.min.js")
+TINYMCE_JS_ROOT = os.path.join(STATIC_URL, "tinymce/")
