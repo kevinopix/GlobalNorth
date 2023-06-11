@@ -30,6 +30,7 @@
                 {% if packages %}
                 <div class="row">
                     {% for each in packages %}
+                    {% if each.is_active %}
                     <div class="col-md-4 text-center">
                         <div class="price-box">
                             <div class="">
@@ -49,6 +50,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                     {% endfor %}
                 </div>
                 {% endif %}

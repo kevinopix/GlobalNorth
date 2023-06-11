@@ -25,9 +25,11 @@
                                 All Packages
                             </a>
                         {% for each in packages %}
+                        {% if each.is_active %}
                             <a class="dropdown-item" href="/services/package/{{each.pk}}/view">
                                 {{each.name}}
                             </a>
+                        {% endif %}
                         {% endfor %}
                         {% endif %}
                     </div>
