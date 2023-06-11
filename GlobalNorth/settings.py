@@ -193,6 +193,9 @@ if 'STRIPE_PROD_PUBLISHABLE_KEY' in os.environ:
     DEBUG = bool(int(os.environ["DEBUG_VALUE"]))
     # DEBUG = True
     CSRF_TRUSTED_ORIGINS = ['https://theglobalnorth.com']
+    EMAIL_SETUP_DOMAIN = 'theglobalnorth.com'
+    EMAIL_SETUP_SITENAME = 'The Global North'
+    EMAIL_SETUP_PROTOCOL = 'https'
 else:
     DEBUG = False
 
