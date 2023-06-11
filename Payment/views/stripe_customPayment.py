@@ -13,7 +13,13 @@ class CustomPaymentView(TemplateView):
         context = super(CustomPaymentView, self).get_context_data(**kwargs)
         context.update({
             "product": product,
-            # "prices": prices,
             "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLISHABLE_KEY
         })
+        try:
+            packages = Package.objects.filter(is_active=True)
+            context.update({
+                "packages": packages
+            })
+        except:
+            pass
         return context
