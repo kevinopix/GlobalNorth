@@ -32,7 +32,7 @@ class PasswordResetRequestView(generic.TemplateView):
                     subject = "Password Reset Requested"
                     email_template_name = "registration/password_reset_email.txt"
                     c = {
-                        "email": user.email,
+                        "email": data,
                         'domain': settings.EMAIL_SETUP_DOMAIN,
                         'site_name': settings.EMAIL_SETUP_SITENAME,
                         "uid": urlsafe_base64_encode(force_bytes(user.pk)),
@@ -41,7 +41,7 @@ class PasswordResetRequestView(generic.TemplateView):
                     }
                     email_ = render_to_string(email_template_name, c)
                     try:
-                        send_mail(subject, email_, 'admin@example.com', [user.email], fail_silently=False)
+                        send_mail(subject, email_, 'admin@example.com', [data], fail_silently=False)
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
 

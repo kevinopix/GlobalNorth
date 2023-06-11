@@ -8,6 +8,7 @@
 {% endblock script%}
 {% block content %}
 {% include 'header.html' %}
+
 <br>
 <section>
     <div class="container">
@@ -30,18 +31,25 @@
                 <div class="card-deck">
                     {% for price in prices %}
                     <div class="card">
+                        <h3 class="titleborder">{{package.name}} Plan</h3>
                         <div class="card-body">
-                            <h5 class="card-title">{{package.name}}</h5>
-                            <p class="card-text">{{package.subtitle}}</p>
-                            <div class="card-text">
-                                <h5 class="card-text">${{ price.price }}</h5>
-                                <form
-                                  action="{% url 'create-checkout-session' price.id %}"
-                                  method="POST"
-                                >
-                                  {% csrf_token %}
-                                  <button type="submit" class="btn btn-primary">Checkout</button>
-                                </form>
+                            <div class="row">
+                                <div class="col-md-6 text-center">
+                                    <h4><u>{{package.subtitle}}</u></h4>
+                                    <h5 class="tag">${{ price.price }}</h5>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <p>{{package.description|safe}}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <form
+                                      action="{% url 'create-checkout-session' price.id %}"
+                                      method="POST"
+                                    >
+                                      {% csrf_token %}
+                                      <button type="submit" class="btn btn-danger">Proceed to Checkout</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
