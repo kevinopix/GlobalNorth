@@ -39,9 +39,9 @@ class PasswordResetRequestView(generic.TemplateView):
                         'token': default_token_generator.make_token(user),
                         'protocol': settings.EMAIL_SETUP_PROTOCOL,
                     }
-                    email = render_to_string(email_template_name, c)
+                    email_ = render_to_string(email_template_name, c)
                     try:
-                        send_mail(subject, email, 'admin@example.com', [user.email], fail_silently=False)
+                        send_mail(subject, email_, 'admin@example.com', [user.email], fail_silently=False)
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
 

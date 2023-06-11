@@ -24,29 +24,30 @@
         {% endfor %}
         {% endif %}
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
+                {% if package.is_active %}
+                <h1></h1>
                 <div class="card-deck">
-                    {% if package.is_active %}
-                  {% for price in prices %}
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">{{package.name}}</h5>
-                      <p class="card-text">{{package.subtitle}}</p>
-                      <div class="card-text">
-                        <h5 class="card-text">${{ price.price }}</h5>
-                        <form
-                          action="{% url 'create-checkout-session' price.id %}"
-                          method="POST"
-                        >
-                          {% csrf_token %}
-                          <button type="submit" class="btn btn-primary">Checkout</button>
-                        </form>
-                      </div>
+                    {% for price in prices %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{package.name}}</h5>
+                            <p class="card-text">{{package.subtitle}}</p>
+                            <div class="card-text">
+                                <h5 class="card-text">${{ price.price }}</h5>
+                                <form
+                                  action="{% url 'create-checkout-session' price.id %}"
+                                  method="POST"
+                                >
+                                  {% csrf_token %}
+                                  <button type="submit" class="btn btn-primary">Checkout</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  {% endfor %}
-                    {% endif %}
+                    {% endfor %}
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
