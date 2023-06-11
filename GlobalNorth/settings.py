@@ -190,9 +190,11 @@ if 'STRIPE_PROD_PUBLISHABLE_KEY' in os.environ:
     STRIPE_PUBLISHABLE_KEY = os.environ["STRIPE_PROD_PUBLISHABLE_KEY"]
     STRIPE_SECRET_KEY = os.environ["STRIPE_PROD_SECRET_KEY"]
     DOMAIN_URL = 'https://theglobalnorth.com'
-    # DEBUG = bool(int(os.environ["DEBUG_VALUE"]))
-    DEBUG = True
+    DEBUG = bool(int(os.environ["DEBUG_VALUE"]))
+    # DEBUG = True
     CSRF_TRUSTED_ORIGINS = ['https://theglobalnorth.com']
+else:
+    DEBUG = False
 
 
 
