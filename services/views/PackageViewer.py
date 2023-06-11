@@ -19,7 +19,7 @@ class PackageViewerView(generic.TemplateView):
         package_pk = kwargs['pk']
         context = self.get_context_data()
         try:
-            package = get_object_or_404(self.model, pk=package_pk)
+            package = get_object_or_404(self.model, pk=package_pk, is_active=True)
             context["prices"] = Price.objects.filter(product=package)
             if package.is_active:
                 context['package'] = package

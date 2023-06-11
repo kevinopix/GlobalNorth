@@ -10,6 +10,7 @@ class PackageAdmin(ImportExportModelAdmin):
     resource_class = PackageResource
     list_display = ('name', 'is_active')
     inlines = (PackagePriceAdmin,)
+    list_editable = ('is_active',)
 
 
 admin.site.register(Package, PackageAdmin)

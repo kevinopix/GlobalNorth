@@ -42,3 +42,14 @@ class Package(models.Model):
         except:
             vals = []
         return vals
+
+    @property
+    def price(self):
+        try:
+            from services.models import Price
+            price = int(Price.objects.get(product__pk=self.pk).price)
+            # print(price)
+        except Exception as e:
+            # print(e)
+            price = 0
+        return price

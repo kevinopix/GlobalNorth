@@ -18,7 +18,7 @@ class PackagesListView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
         try:
             context = self.get_context_data()
-            packages = Package.objects.all()
+            packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
             rotate_token(self.request)
             return render(self.request, self.template_name, context)
