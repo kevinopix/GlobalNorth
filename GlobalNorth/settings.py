@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'services.apps.ServicesConfig',
     'Payment.apps.PaymentConfig',
+    'termsandconditions.apps.TermsandconditionsConfig',
 ]
 
 MIDDLEWARE = [
@@ -197,7 +198,7 @@ if 'STRIPE_PROD_PUBLISHABLE_KEY' in os.environ:
     EMAIL_SETUP_SITENAME = 'The Global North'
     EMAIL_SETUP_PROTOCOL = 'https'
 else:
-    DEBUG = False
+    DEBUG = True
 
 
 

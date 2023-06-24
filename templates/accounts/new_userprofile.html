@@ -31,6 +31,24 @@
                         </div>
                         {{form.location}}
                     </div>
+                    <div class="form-group">
+                        <h4>Terms and Conditions</h4>
+                        <textarea class="w-100" readonly>
+                            {{terms}}
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-1">
+                                {{form.terms_conditions_accepted}}
+                            </div>
+                            <div class="col-md-11" style="text-align:left;">
+                                <label class="form-check-label" for="id_terms_conditions_accepted">
+                                    By checking the box, I agree to the terms & conditions of this contract.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <input type="submit" name="submit" value="Add Profile" class="btn btn-outline-secondary">
