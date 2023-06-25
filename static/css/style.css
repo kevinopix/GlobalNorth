@@ -784,3 +784,7 @@ ul .bullets:before {
 .titler{
     width: auto;
 }
+
+.banner-main .carousel-caption h1 {
+    margin-top: auto;
+}
