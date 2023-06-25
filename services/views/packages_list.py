@@ -3,7 +3,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from services.models import Package
+from services.models import Package, Service
 from django.views import generic
 from django.conf import settings
 from django.middleware.csrf import rotate_token
@@ -34,6 +34,11 @@ class PackagesListView(generic.TemplateView):
         try:
             packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
+        except:
+            pass
+        try:
+            services = Service.objects.filter(is_active=True)
+            context['services'] = services
         except:
             pass
         return context

@@ -35,6 +35,29 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <button class="btn btn-warning btn-rounded btn-sm dropdown-toggle" type="button"
+                        id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Services
+                        <i class="fa fa-tasks" style="margin-left: 1em;"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                        {% if services %}
+                            <a class="dropdown-item" href="/services/service/list">
+                                All Services
+                            </a>
+                        {% for each in services %}
+                        {% if each.is_active %}
+                            <a class="dropdown-item" href="/services/service/{{each.pk}}/view">
+                                {{each.name}}
+                            </a>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">

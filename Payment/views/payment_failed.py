@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
-from services.models import Package
+from services.models import Package, Service
 
 
 class PaymentFailedView(LoginRequiredMixin,generic.TemplateView):
@@ -11,6 +11,11 @@ class PaymentFailedView(LoginRequiredMixin,generic.TemplateView):
         try:
             packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
+        except:
+            pass
+        try:
+            services = Service.objects.filter(is_active=True)
+            context['services'] = services
         except:
             pass
         return context

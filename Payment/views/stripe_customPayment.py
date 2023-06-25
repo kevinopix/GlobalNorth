@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.views.generic import TemplateView
-from services.models import Package
+from services.models import Package, Service
 
 
 class CustomPaymentView(TemplateView):
@@ -20,6 +20,11 @@ class CustomPaymentView(TemplateView):
             context.update({
                 "packages": packages
             })
+        except:
+            pass
+        try:
+            services = Service.objects.filter(is_active=True)
+            context['services'] = services
         except:
             pass
         return context

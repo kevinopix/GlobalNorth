@@ -5,6 +5,7 @@ class Service(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     is_active = models.BooleanField(default=False)
+    icon_name = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

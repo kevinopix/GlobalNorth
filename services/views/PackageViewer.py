@@ -3,7 +3,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from services.models import Package, Price
+from services.models import Package, Price, Service
 from django.views import generic
 from django.conf import settings
 from django.middleware.csrf import rotate_token
@@ -42,4 +42,9 @@ class PackageViewerView(generic.TemplateView):
         context['stripe_publishable_key'] = settings.STRIPE_PUBLISHABLE_KEY
         if self.request.user.is_authenticated:
             context['email'] = self.request.user.email
+        try:
+            services = Service.objects.filter(is_active=True)
+            context['services'] = services
+        except:
+            pass
         return context

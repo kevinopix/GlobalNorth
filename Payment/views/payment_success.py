@@ -6,7 +6,7 @@ from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import generic
 from Payment.models import PaymentDetail
-from services.models import Package
+from services.models import Package, Service
 from accounts.models import UserProfile
 
 
@@ -49,6 +49,11 @@ class PaymentSuccessView(LoginRequiredMixin,generic.TemplateView):
         try:
             packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
+        except:
+            pass
+        try:
+            services = Service.objects.filter(is_active=True)
+            context['services'] = services
         except:
             pass
         return context

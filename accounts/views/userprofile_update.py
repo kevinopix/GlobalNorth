@@ -6,7 +6,7 @@ from django.views.generic.edit import UpdateView
 from accounts.models import UserProfile
 from accounts.forms import UserProfileUpdateForm
 from django.conf import settings
-from services.models import Package
+from services.models import Package, Service
 
 
 class UserProfileUpdateView(generic.TemplateView):
@@ -58,6 +58,11 @@ class UserProfileUpdateView(generic.TemplateView):
         try:
             packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
+        except:
+            pass
+        try:
+            services = Service.objects.filter(is_active=True)
+            context['services'] = services
         except:
             pass
         return context

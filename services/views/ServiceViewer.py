@@ -41,4 +41,9 @@ class ServiceViewerView(generic.TemplateView):
             context['packages'] = packages
         except:
             pass
+        try:
+            services = Service.objects.filter(is_active=True)
+            context['services'] = services
+        except:
+            pass
         return context

@@ -12,60 +12,32 @@
                       support and guidance, ensuring a seamless transition to your
                       desired country.
                     </span>
-                    <h4>Here are some of the key services we offer:</h4>
+                    <h4>Here are some of the key services we offer: </h4>
                 </div>
             </div>
         </div>
     </div>
     <div class="container">
+        {% if services %}
         <div class="row">
+            {% for each in services %}
+            {% if each.is_active %}
             <div class="col-md-4 col-sm-6 service-box">
                 <div class="content">
-                    <i class="material-icons">public</i>
-                    <h4>General Consultation</h4>
-                    <p>Add your content here describing the service.</p>
+                    <i class="material-icons">{{each.icon_name}}</i>
+                    <h5>{{each.name}}</h5>
+                    <p>{{each.description|slice:50}}</p>
+                    <a href="/services/service/{{each.pk}}/view/" class="plan-btn">Read More</a>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 service-box">
-                <div class="content">
-                    <i class="material-icons">business_center</i>
-                    <h4>Visitation Services</h4>
-                    <p>Add your content here describing the service.</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 service-box">
-                <div class="content">
-                    <i class="material-icons">school</i>
-                    <h4>Education Services</h4>
-                    <p>Add your content here describing the service.</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 service-box">
-                <div class="content">
-                    <i class="material-icons">flight</i>
-                    <h4>Flight Booking Options</h4>
-                    <p>Add your content here describing the service.</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 service-box">
-                <div class="content">
-                    <i class="material-icons">hotel</i>
-                    <h4>Accomodation Services</h4>
-                    <p>Add your content here describing the service.</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 service-box">
-                <div class="content">
-                    <i class="material-icons">people</i>
-                    <h4>Consultation Services</h4>
-                    <p>Add your content here describing the service.</p>
-                </div>
-            </div>
+            {% endif %}
+            {% endfor %}
         </div>
+        {% endif %}
         <div class="row">
             <div class="col-md-12 text-center">
                 <div>
-                    <a href="/services/package/list" class="btn btn-custom">View Our Packages</a>
+                    <a href="/services/service/list" class="btn btn-custom">View Our Services</a>
                 </div>
             </div>
         </div>

@@ -4,15 +4,15 @@
         <div class="row">
             <div class="col-md-4">
                 <ul class="list-unstyled text-center">
-                    <li>
-                        <a href="/" style="color: rgb(204, 203, 203);">
-                            <i class="fa fa-home" aria-hidden="true" style="margin-right: 0.2em;"></i>Home</a>
-                    </li>
+<!--                    <li>-->
+<!--                        <a href="/" style="color: rgb(204, 203, 203);">-->
+<!--                            <i class="fa fa-home" aria-hidden="true" style="margin-right: 0.2em;"></i>Home</a>-->
+<!--                    </li>-->
                     <li>
                         <div class="dropdown">
                             <button class="btn btn-primary btn-rounded btn-sm dropdown-toggle" type="button"
                                 id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Services
+                                Packages
                                 <i class="fa fa-tasks" style="margin-left: 1em;"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2"
@@ -24,6 +24,30 @@
                                 {% for each in packages %}
                                 {% if each.is_active %}
                                     <a class="dropdown-item" href="/services/package/{{each.pk}}/view">
+                                        {{each.name}}
+                                    </a>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn btn-warning btn-rounded btn-sm dropdown-toggle" type="button"
+                                id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Services
+                                <i class="fa fa-tasks" style="margin-left: 1em;"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3"
+                                style="width: 100%; text-align: center; padding: 0;margin: 0;">
+                                {% if services %}
+                                    <a class="dropdown-item" href="/services/service/list">
+                                        All Services
+                                    </a>
+                                {% for each in services %}
+                                {% if each.is_active %}
+                                    <a class="dropdown-item" href="/services/service/{{each.pk}}/view">
                                         {{each.name}}
                                     </a>
                                 {% endif %}

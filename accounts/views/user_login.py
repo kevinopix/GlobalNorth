@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.middleware.csrf import rotate_token
 from django.views import generic
-from services.models import Package
+from services.models import Package, Service
 
 
 class UserLoginView(generic.TemplateView):
@@ -58,6 +58,11 @@ class UserLoginView(generic.TemplateView):
         try:
             packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
+        except:
+            pass
+        try:
+            services = Service.objects.filter(is_active=True)
+            context['services'] = services
         except:
             pass
         return context

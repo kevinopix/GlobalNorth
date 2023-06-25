@@ -1,5 +1,5 @@
 from django.views import generic
-from services.models import Package
+from services.models import Package, Service
 
 
 class PaymentCancelView(generic.TemplateView):
@@ -10,6 +10,11 @@ class PaymentCancelView(generic.TemplateView):
         try:
             packages = Package.objects.filter(is_active=True)
             context['packages'] = packages
+        except:
+            pass
+        try:
+            services = Service.objects.filter(is_active=True)
+            context['services'] = services
         except:
             pass
         return context
