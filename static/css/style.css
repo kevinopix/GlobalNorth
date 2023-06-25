@@ -772,3 +772,15 @@ input[type="checkbox"]::before {
 input[type="checkbox"]:checked::before {
   transform: scale(1);
 }
+
+ul .bullets {
+  list-style: none;
+}
+
+ul .bullets:before {
+  content: '✓';
+  padding-right: 1em;
+}
+.titler{
+    width: auto;
+}

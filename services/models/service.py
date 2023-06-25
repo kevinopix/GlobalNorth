@@ -11,6 +11,9 @@ class Service(models.Model):
     def __str__(self) -> str:
         return f"{self.name}"
 
+    def get_absolute_url(self):
+        return f"/services/service/{self.pk}/view/"
+
     @property
     def serviceitems(self):
         try:

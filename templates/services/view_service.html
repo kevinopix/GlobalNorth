@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ page_title }}
+{% endblock %}
+{% block content %}
+{% include 'header.html' %}
+
+<br>
+<section>
+    <div class="container">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row">
+            <div class="col-md-12">
+                <div {% if message.tags %} class="{{ message.tags }} message_t"{% endif %}
+                     role="alert">
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="row">
+            <div class="col-md-12 text-center">
+                {% if service.is_active %}
+                <h1></h1>
+                <div class="card-deck">
+                    <div class="card">
+                        <h3 class="titleborder">{{service.name}}</h3>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8 text-center">
+                                    <p>{{service.description|safe}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    {% if service.serviceitems %}
+                                        <ul>
+                                            {% for each in service.serviceitems %}
+                                            <li class="bullets">
+                                                {{each.bullet_item}}
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+{% include 'footer.html' %}
+{% endblock %}
