@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ page_title }}
+{% endblock %}
+{% block content %}
+{% include 'header.html' %}
+
+<section>
+    <div class="container" style="padding-top: 2rem; padding-bottom: 2 rem;">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row">
+            <div class="col-md-12">
+                <div {% if message.tags %} class="{{ message.tags }} message_t"{% endif %}
+                     role="alert">
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="price-sec-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="main-heading titleborder titler">OUR SERVICES</div>
+                    </div>
+                </div>
+                {% if services %}
+                <div class="row card-deck">
+                    {% for each in services %}
+                    {% if each.is_active %}
+                    <div class="card col-md-4 text-center">
+                        <div class="card_title mt-2">
+                            <h5><u>{{each.name}}</u></h5>
+                        </div>
+                        <div>
+                            <p>
+                                {{each.description|slice:100}}
+                            </p>
+                            {% if each.serviceitems %}
+                                <ul>
+                                    {% for each in each.serviceitems %}
+                                    <li class="bullets">
+                                        {{each.bullet_item}}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        <p>
+                            <a href="/services/service/{{each.pk}}/view/" class="plan-btn">Read More</a>
+                        </p>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'footer.html' %}
+{% endblock %}
