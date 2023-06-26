@@ -40,11 +40,11 @@
                                 </div>
                                 <div>
                                     <p>
-                                        {{each.description|slice:70}} ...
+                                        {{each.description|slice:40}} ...
                                     </p>
                                     {% if each.serviceitems %}
                                         <ul>
-                                            {% for each in each.serviceitems %}
+                                            {% for each in each.serviceitems|slice:"4" %}
                                             <li class="bullets">
                                                 {{each.bullet_item|slice:30}}...
                                             </li>
