@@ -31,27 +31,29 @@
                 <div class="row card-deck">
                     {% for each in services %}
                     {% if each.is_active %}
-                    <div class="col-md-4">
+                    <div class="col-md-4 mb-3 d-flex align-items-stretch">
                         <div class="card text-center">
-                            <div class="card_title mt-2">
-                                <h1><i class="material-icons">{{each.icon_name}}</i></h1>
-                                <h5><u>{{each.name}}</u></h5>
+                            <div class="card-body d-flex flex-column">
+                                <div class="card-header mt-1">
+                                    <h1><i class="material-icons">{{each.icon_name}}</i></h1>
+                                    <h5><u>{{each.name}}</u></h5>
+                                </div>
+                                <div>
+                                    <p>
+                                        {{each.description|slice:70}} ...
+                                    </p>
+                                    {% if each.serviceitems %}
+                                        <ul>
+                                            {% for each in each.serviceitems %}
+                                            <li class="bullets">
+                                                {{each.bullet_item|slice:30}}...
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div>
-                                <p>
-                                    {{each.description|slice:100}}...
-                                </p>
-                                {% if each.serviceitems %}
-                                    <ul>
-                                        {% for each in each.serviceitems %}
-                                        <li class="bullets">
-                                            {{each.bullet_item|slice:30}}...
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-                                {% endif %}
-                            </div>
-                            <p>
+                            <p style="padding-left: 1em;padding-right: 1em;">
                                 <a href="/services/service/{{each.pk}}/view/" class="plan-btn">Read More</a>
                             </p>
                         </div>
