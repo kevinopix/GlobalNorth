@@ -8,6 +8,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
+    phone_number = models.CharField(max_length=14, blank=True, null=True)
     terms_conditions_accepted = models.BooleanField(default=False)
     date_terms_accepted = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     # date_created = models.DateTimeField(auto_now_add=True)

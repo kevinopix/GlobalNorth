@@ -18,7 +18,7 @@
             {% endfor %}
             {% endif %}
             <div class="card-header mx-auto" style="">
-                <span class="bg-light" style="padding: 2rem;">{{project}} - User Profile</span>
+                <span style="padding: 2rem;">{{project}} - User Profile</span>
             </div>
             <div class="card-body">
                 <h4 class="card-title text-center">Hello, {{ userprofile.user|title }}</h4>
@@ -29,6 +29,8 @@
                         {{ userprofile.user.first_name }} {{ userprofile.user.last_name }}</p>
                     <p class="text-muted mb-0" style="font-size: 12px">Email:{{ userprofile.user.email }} </p>
                     <p class="text-muted mb-0" style="font-size: 12px">Location:{{ userprofile.location }} </p>
+                    <p class="text-muted mb-0" style="font-size: 12px">Phone:{{ userprofile.phone_number }} </p>
+                    <p class="text-muted mb-0" style="font-size: 12px">Date Accepted Terms & Conditions:{{ userprofile.date_terms_accepted }} </p>
                     <a href="/accounts/profile/{{profile_pk}}/update" class="btn btn-primary">
                         Update Profile Info
                     </a>

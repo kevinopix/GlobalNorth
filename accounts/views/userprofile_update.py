@@ -44,9 +44,10 @@ class UserProfileUpdateView(generic.TemplateView):
         form = self.form_class(request.POST)
         if form.is_valid():
             location = form.cleaned_data['location']
-            print(location)
+            phone = form.cleaned_data['phone_number']
             userprofile = get_object_or_404(self.model, pk=kwargs['pk'])
             userprofile.location = location
+            userprofile.phone_number = phone
             userprofile.save()
             messages.success(self.request, 'User Profile Updated Successfully')
             return redirect('/accounts/profile/{a}/view'.format(a=userprofile.pk))

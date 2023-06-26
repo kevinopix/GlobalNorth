@@ -8,9 +8,7 @@
 
 <section class="bg-light" style="padding: 2rem;">
     <div class="container">
-        <div class="card card-login mx-auto text-center"
-            style="background: rgb(253, 227, 227) !important;" id="form_login">
-            {% if messages %}
+        {% if messages %}
             {% for message in messages %}
             <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
                  role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
@@ -18,12 +16,14 @@
             </div>
             {% endfor %}
             {% endif %}
-            <div class="card-header mx-auto" style="background: rgb(253, 227, 227) !important;">
-                <span class="bg-light" style="padding: 2rem;">{{project}} - Update User Profile </span>
+        <div class="card card-login mx-auto text-center"
+            style="background: rgb(253, 227, 227) !important;" id="form_login">
+            <h5 class="titleborder">Update User Profile </h5>
+            <div class="card-header mx-auto">
                 <br>
                 <span>{{user_mail}}</span>
                 <br>
-                <span>{{location}}</span>
+                <span>Location:{{location}}</span>
             </div>
             <div class="card-body">
                 <form class="form-horizontal" action='' method="POST">
@@ -33,6 +33,12 @@
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
                         {{form.location}}
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        </div>
+                        {{form.phone_number}}
                     </div>
 
                     <div class="form-group">
