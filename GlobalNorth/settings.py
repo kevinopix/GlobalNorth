@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'services.apps.ServicesConfig',
     'Payment.apps.PaymentConfig',
     'termsandconditions.apps.TermsandconditionsConfig',
+    'testimonials.apps.TestimonialsConfig',
 ]
 
 MIDDLEWARE = [

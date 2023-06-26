@@ -14,40 +14,22 @@
          </div>
     </div>
     <div class="container">
+        {% if testimonials %}
         <div class="row">
+            {% for each in testimonials %}
             <div class="col-md-4 col-sm-6 service-box">
                 <div class="content">
                     <p>
-                        "I cannot thank Global North enough for their exceptional assistance in helping
-                        me immigrate to Canada. From the initial consultation to the final visa approval."
+                        "{{each.testimony_text}}"
                     </p>
                     <div class="d-flex align-items-center">
-                        <i class="material-icons">chat</i>
-                        <h4>Jerry Onyango - Applicant</h4>
+                        <i class="material-icons">{{each.icon_name}}</i>
+                        <h4>{{each.testimony_by}}</h4>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 service-box">
-                <div class="content">
-                    <p>"I cannot thank Global North enough for their exceptional assistance in helping
-                        me immigrate to Canada. From the initial consultation to the final visa approval."
-                    </p>
-                    <div class="d-flex align-items-center">
-                        <i class="material-icons">chat</i>
-                        <h4>Jerry Onyango - Applicant</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 service-box">
-                <div class="content">
-                    <p>"I cannot thank Global North enough for their exceptional assistance in helping
-                        me immigrate to Canada. From the initial consultation to the final visa approval."</p>
-                    <div class="d-flex align-items-center">
-                        <i class="material-icons">chat</i>
-                        <h4>Jerry Onyango - Applicant</h4>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
+        {% endif %}
     </div>
 </div>

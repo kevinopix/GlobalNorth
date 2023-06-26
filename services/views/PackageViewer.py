@@ -47,4 +47,10 @@ class PackageViewerView(generic.TemplateView):
             context['services'] = services
         except:
             pass
+        try:
+            from testimonials.models import Testimony
+            testimonials = Testimony.objects.filter(is_active=True)
+            context['testimonials'] = testimonials
+        except:
+            pass
         return context

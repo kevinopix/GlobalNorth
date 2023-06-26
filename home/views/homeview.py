@@ -40,6 +40,12 @@ class HomeView(generic.TemplateView):
             context['mission'] = mission
         except:
             pass
+        try:
+            from testimonials.models import Testimony
+            testimonials = Testimony.objects.filter(is_active=True)
+            context['testimonials'] = testimonials
+        except:
+            pass
         return context
 
 
