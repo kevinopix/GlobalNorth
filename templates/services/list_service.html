@@ -39,13 +39,13 @@
                             </div>
                             <div>
                                 <p>
-                                    {{each.description|slice:100}}
+                                    {{each.description|slice:100}}...
                                 </p>
                                 {% if each.serviceitems %}
                                     <ul>
                                         {% for each in each.serviceitems %}
                                         <li class="bullets">
-                                            {{each.bullet_item}}
+                                            {{each.bullet_item|slice:30}}...
                                         </li>
                                         {% endfor %}
                                     </ul>
