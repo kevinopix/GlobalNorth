@@ -798,6 +798,7 @@ ul .bullets:before {
     padding-left: 0.5em;
     padding-right: 0.5em;
     max-width: 600px;
+    text-align: center;
 }
 .card-header {
     background-color: transparent;
@@ -808,4 +809,8 @@ ul {
 }
 textarea{
 min-height: 7em;
+}
+.titleborder {
+    text-align: center;
+    width: auto;
 }

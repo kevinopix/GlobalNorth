@@ -8,17 +8,17 @@
 
 <section class="bg-light" style="padding: 2rem;">
     <div class="container">
+        <h5 class="titleborder">Update User Profile </h5>
         {% if messages %}
-            {% for message in messages %}
-            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
-                 role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
-                {{ message }}
-            </div>
-            {% endfor %}
-            {% endif %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
+             role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
         <div class="card card-login mx-auto text-center"
             style="background: rgb(253, 227, 227) !important;" id="form_login">
-            <h5 class="titleborder">Update User Profile </h5>
             <div class="card-header mx-auto">
                 <br>
                 <span>{{user_mail}}</span>

@@ -6,20 +6,18 @@
 {% block content %}
 {% include 'header.html' %}
 <section class="bg-light" style="padding: 2rem;">
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
+         role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
     <div class="container">
+        <h4 class="titleborder">My User Profile</h4>
         <div class="card card-login mx-auto text-center"
             style="background: rgb(253, 227, 227) !important;" id="form_login">
-            {% if messages %}
-            {% for message in messages %}
-            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}
-                 role="alert" style="margin-bottom: 0.5em; padding-top:0.5em; padding-bottom: 0.5em;">
-                {{ message }}
-            </div>
-            {% endfor %}
-            {% endif %}
-            <div class="card-header mx-auto" style="">
-                <span style="padding: 2rem;">{{project}} - User Profile</span>
-            </div>
             <div class="card-body">
                 <h4 class="card-title text-center">Hello, {{ userprofile.user|title }}</h4>
                 <hr>
