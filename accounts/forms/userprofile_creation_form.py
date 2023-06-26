@@ -11,6 +11,9 @@ class UserProfileCreationForm(forms.ModelForm):
 			'location': forms.TextInput(
 				attrs={'class': 'form-control', 'placeholder': "Enter your Location"}
 			),
+			'phone_number': forms.TextInput(
+				attrs={'class': 'form-control', 'placeholder': "Enter phone number"}
+			),
 			'terms_conditions_accepted': forms.CheckboxInput(
 				attrs={'class': 'required checkbox'}
 			)
