@@ -806,3 +806,6 @@ ul .bullets:before {
 ul {
     padding-inline-start: 0.2em;
 }
+textarea{
+min-height: 5em;
+}
