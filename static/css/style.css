@@ -801,3 +801,6 @@ ul .bullets:before {
     background-color: transparent;
     border-bottom: none;
 }
+ul {
+    padding-inline-start: 0.2em;
+}

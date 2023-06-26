@@ -38,7 +38,7 @@
                                     <h1><i class="material-icons">{{each.icon_name}}</i></h1>
                                     <h5><u>{{each.name}}</u></h5>
                                 </div>
-                                <div>
+                                <div class="card-content">
                                     <p>
                                         {{each.description|slice:40}} ...
                                     </p>
@@ -46,7 +46,7 @@
                                         <ul>
                                             {% for each in each.serviceitems|slice:"4" %}
                                             <li class="bullets">
-                                                {{each.bullet_item|slice:30}}...
+                                                <span>{{each.bullet_item|slice:30}}...</span>
                                             </li>
                                             {% endfor %}
                                         </ul>
