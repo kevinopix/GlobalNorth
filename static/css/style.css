@@ -811,6 +811,6 @@ textarea{
 min-height: 7em;
 }
 .titleborder {
-    text-align: center;
+    text-align: center !important;
     width: auto;
 }
