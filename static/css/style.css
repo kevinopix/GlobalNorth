@@ -788,3 +788,12 @@ ul .bullets:before {
 .banner-main .carousel-caption h1 {
     margin-top: auto;
 }
+
+.bullets{
+    text-align: left;
+}
+.titleborder {
+    width: auto;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
