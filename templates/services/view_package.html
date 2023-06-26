@@ -27,11 +27,10 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 {% if package.is_active %}
-                <h1></h1>
+                <h3 class="main-heading titleborder titler">{{package.name}} Plan</h3>
                 <div class="card-deck">
                     {% for price in prices %}
                     <div class="card">
-                        <h3 class="titleborder">{{package.name}} Plan</h3>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4 text-center">
